@@ -1,0 +1,43 @@
+@import "general.scss";
+
+.header-logged-out {
+    width: 100%;
+    z-index: 100;
+
+    padding: 20px;
+
+    background: $white;
+    color: $main-color;
+}
+
+.header-logged-in {
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+
+    padding: 10px;
+
+    background: $header-color;
+
+    .menu {
+        background: inherit;
+        a.item {
+            color: $secondary-color;
+
+            &:hover {
+                color: darken($secondary-color, 40%);
+            }
+        }
+    }
+}
+
+#logo {
+    height: 50px;
+    width: auto;
+}
+
+.user-name {
+    color: $white !important;
+    font-weight: bolder !important;
+}

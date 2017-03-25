@@ -1,0 +1,527 @@
+<template name="indexPlantarum">
+    <div class="ui grid">
+        <div class="two wide column">
+
+        </div>
+        <div class="twelve wide column">
+            <!-- Page title -->
+            <div class="ui centered grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui horizontal divider">
+                            <div class="indexSeminum-text">
+                                {{text.indexPlantarum.header}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page informations -->
+            <div class="ui grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="general-text">
+                            {{{text.indexPlantarum.info}}}
+                        </div>
+                        <div class="ui divider"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info message -->
+            <div class="ui icon info message">
+                <i class="close icon"></i>
+                <i class="idea icon"></i>
+                <div class="content">
+                    <div class="header">
+                        {{text.indexPlantarum.disclaimerHeader}}
+                    </div>
+                    <p>
+                        {{text.indexPlantarum.disclaimerContent}}
+                    </p>
+                </div>
+            </div>
+
+            <!-- A R B O R E T U M -->
+            <div class="ui centered grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui horizontal divider">
+                            <h2>{{text.indexPlantarum.arboretumHeader}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plants panel -->
+            <table class="ui table">
+                <thead>
+                    <tr>
+                        <th>{{text.indexPlantarum.table.type}}</th>
+                        <th>{{text.indexPlantarum.table.family}}</th>
+                        <th>{{text.indexPlantarum.table.name}}</th>
+                        <th>{{text.indexPlantarum.table.namePL}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each arboretumPlants}}
+                        <tr class="animated fadeInUp">
+                            {{#with generalInformations}}
+                                <td>
+                                    {{formatType type}}
+                                </td>
+                                <td>
+                                    {{family.name}}
+                                </td>
+                                <td>
+                                    {{#with name}}
+                                        {{genus}}
+                                        {{#if hybrid}}
+                                            &times;
+                                        {{/if}}
+                                        <i>{{species}}</i>
+                                        {{#if variety}}
+                                            var. <i>{{variety}}</i>
+                                        {{/if}}
+                                        {{#if subspecies}}
+                                            subsp. {{subspecies}}
+                                        {{/if}}
+                                        {{authorship}}
+                                        {{#if cultivar}}
+                                            '{{cultivar}}'
+                                        {{/if}}
+                                    {{/with}}
+                                </td>
+                                <td>
+                                    {{namePL}}
+                                </td>
+                            {{/with}}
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{>pagination page='arboretum'}}
+
+            <!-- M E D I C I N A L  P L A N T S  S E C T O R -->
+            <div class="ui centered grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui horizontal divider">
+                            <h2>{{text.indexPlantarum.medicinalPlantsSectorHeader}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plants panel -->
+            <table class="ui table">
+                <thead>
+                    <tr>
+                        <th>{{text.indexPlantarum.table.type}}</th>
+                        <th>{{text.indexPlantarum.table.family}}</th>
+                        <th>{{text.indexPlantarum.table.name}}</th>
+                        <th>{{text.indexPlantarum.table.namePL}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each medicinalPlantsSectorPlants}}
+                        <tr class="animated fadeInUp">
+                            {{#with generalInformations}}
+                                <td>
+                                    {{formatType type}}
+                                </td>
+                                <td>
+                                    {{family.name}}
+                                </td>
+                                <td>
+                                    {{#with name}}
+                                        {{genus}}
+                                        {{#if hybrid}}
+                                            &times;
+                                        {{/if}}
+                                        <i>{{species}}</i>
+                                        {{#if variety}}
+                                            var. <i>{{variety}}</i>
+                                        {{/if}}
+                                        {{#if subspecies}}
+                                            subsp. {{subspecies}}
+                                        {{/if}}
+                                        {{authorship}}
+                                        {{#if cultivar}}
+                                            '{{cultivar}}'
+                                        {{/if}}
+                                    {{/with}}
+                                </td>
+                                <td>
+                                    {{namePL}}
+                                </td>
+                            {{/with}}
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{>pagination page='medicinalPlantsSector'}}
+
+            <!-- D E C O R A T I V E  D E P A R T M E N T -->
+            <div class="ui centered grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui horizontal divider">
+                            <h2>{{text.indexPlantarum.decorativeDepartmentHeader}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plants panel -->
+            <table class="ui table">
+                <thead>
+                    <tr>
+                        <th>{{text.indexPlantarum.table.type}}</th>
+                        <th>{{text.indexPlantarum.table.family}}</th>
+                        <th>{{text.indexPlantarum.table.name}}</th>
+                        <th>{{text.indexPlantarum.table.namePL}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each decorativeDepartmentPlants}}
+                        <tr class="animated fadeInUp">
+                            {{#with generalInformations}}
+                                <td>
+                                    {{formatType type}}
+                                </td>
+                                <td>
+                                    {{family.name}}
+                                </td>
+                                <td>
+                                    {{#with name}}
+                                        {{genus}}
+                                        {{#if hybrid}}
+                                            &times;
+                                        {{/if}}
+                                        <i>{{species}}</i>
+                                        {{#if variety}}
+                                            var. <i>{{variety}}</i>
+                                        {{/if}}
+                                        {{#if subspecies}}
+                                            subsp. {{subspecies}}
+                                        {{/if}}
+                                        {{authorship}}
+                                        {{#if cultivar}}
+                                            '{{cultivar}}'
+                                        {{/if}}
+                                    {{/with}}
+                                </td>
+                                <td>
+                                    {{namePL}}
+                                </td>
+                            {{/with}}
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{>pagination page='decorativeDepartment'}}
+
+            <!-- S Y S T E M A T I C S -->
+            <div class="ui centered grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui horizontal divider">
+                            <h2>{{text.indexPlantarum.systematicsHeader}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plants panel -->
+            <table class="ui table">
+                <thead>
+                    <tr>
+                        <th>{{text.indexPlantarum.table.type}}</th>
+                        <th>{{text.indexPlantarum.table.family}}</th>
+                        <th>{{text.indexPlantarum.table.name}}</th>
+                        <th>{{text.indexPlantarum.table.namePL}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each systematicsPlants}}
+                        <tr class="animated fadeInUp">
+                            {{#with generalInformations}}
+                                <td>
+                                    {{formatType type}}
+                                </td>
+                                <td>
+                                    {{family.name}}
+                                </td>
+                                <td>
+                                    {{#with name}}
+                                        {{genus}}
+                                        {{#if hybrid}}
+                                            &times;
+                                        {{/if}}
+                                        <i>{{species}}</i>
+                                        {{#if variety}}
+                                            var. <i>{{variety}}</i>
+                                        {{/if}}
+                                        {{#if subspecies}}
+                                            subsp. {{subspecies}}
+                                        {{/if}}
+                                        {{authorship}}
+                                        {{#if cultivar}}
+                                            '{{cultivar}}'
+                                        {{/if}}
+                                    {{/with}}
+                                </td>
+                                <td>
+                                    {{namePL}}
+                                </td>
+                            {{/with}}
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{>pagination page='systematics'}}
+
+            <!-- P H A R M A C O N O S Y -->
+            <div class="ui centered grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui horizontal divider">
+                            <h2>{{text.indexPlantarum.pharmacognosyHeader}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plants panel -->
+            <table class="ui table">
+                <thead>
+                    <tr>
+                        <th>{{text.indexPlantarum.table.type}}</th>
+                        <th>{{text.indexPlantarum.table.family}}</th>
+                        <th>{{text.indexPlantarum.table.name}}</th>
+                        <th>{{text.indexPlantarum.table.namePL}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each pharmacognosyPlants}}
+                        <tr class="animated fadeInUp">
+                            {{#with generalInformations}}
+                                <td>
+                                    {{formatType type}}
+                                </td>
+                                <td>
+                                    {{family.name}}
+                                </td>
+                                <td>
+                                    {{#with name}}
+                                        {{genus}}
+                                        {{#if hybrid}}
+                                            &times;
+                                        {{/if}}
+                                        <i>{{species}}</i>
+                                        {{#if variety}}
+                                            var. <i>{{variety}}</i>
+                                        {{/if}}
+                                        {{#if subspecies}}
+                                            subsp. {{subspecies}}
+                                        {{/if}}
+                                        {{authorship}}
+                                        {{#if cultivar}}
+                                            '{{cultivar}}'
+                                        {{/if}}
+                                    {{/with}}
+                                </td>
+                                <td>
+                                    {{namePL}}
+                                </td>
+                            {{/with}}
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{>pagination page='pharmacognosy'}}
+
+            <!-- G R E E N H O U S E -->
+            <div class="ui centered grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui horizontal divider">
+                            <h2>{{text.indexPlantarum.greenhouseHeader}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plants panel -->
+            <table class="ui table">
+                <thead>
+                    <tr>
+                        <th>{{text.indexPlantarum.table.type}}</th>
+                        <th>{{text.indexPlantarum.table.family}}</th>
+                        <th>{{text.indexPlantarum.table.name}}</th>
+                        <th>{{text.indexPlantarum.table.namePL}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each greenhousePlants}}
+                        <tr class="animated fadeInUp">
+                            {{#with generalInformations}}
+                                <td>
+                                    {{formatType type}}
+                                </td>
+                                <td>
+                                    {{family.name}}
+                                </td>
+                                <td>
+                                    {{#with name}}
+                                        {{genus}}
+                                        {{#if hybrid}}
+                                            &times;
+                                        {{/if}}
+                                        <i>{{species}}</i>
+                                        {{#if variety}}
+                                            var. <i>{{variety}}</i>
+                                        {{/if}}
+                                        {{#if subspecies}}
+                                            subsp. {{subspecies}}
+                                        {{/if}}
+                                        {{authorship}}
+                                        {{#if cultivar}}
+                                            '{{cultivar}}'
+                                        {{/if}}
+                                    {{/with}}
+                                </td>
+                                <td>
+                                    {{namePL}}
+                                </td>
+                            {{/with}}
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{>pagination page='greenhouse'}}
+
+            <!-- M O O R -->
+            <div class="ui centered grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui horizontal divider">
+                            <h2>{{text.indexPlantarum.moorHeader}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plants panel -->
+            <table class="ui table">
+                <thead>
+                    <tr>
+                        <th>{{text.indexPlantarum.table.type}}</th>
+                        <th>{{text.indexPlantarum.table.family}}</th>
+                        <th>{{text.indexPlantarum.table.name}}</th>
+                        <th>{{text.indexPlantarum.table.namePL}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each moorPlants}}
+                        <tr class="animated fadeInUp">
+                            {{#with generalInformations}}
+                                <td>
+                                    {{formatType type}}
+                                </td>
+                                <td>
+                                    {{family.name}}
+                                </td>
+                                <td>
+                                    {{#with name}}
+                                        {{genus}}
+                                        {{#if hybrid}}
+                                            &times;
+                                        {{/if}}
+                                        <i>{{species}}</i>
+                                        {{#if variety}}
+                                            var. <i>{{variety}}</i>
+                                        {{/if}}
+                                        {{#if subspecies}}
+                                            subsp. {{subspecies}}
+                                        {{/if}}
+                                        {{authorship}}
+                                        {{#if cultivar}}
+                                            '{{cultivar}}'
+                                        {{/if}}
+                                    {{/with}}
+                                </td>
+                                <td>
+                                    {{namePL}}
+                                </td>
+                            {{/with}}
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{>pagination page='moor'}}
+
+            <!-- D U N E -->
+            <div class="ui centered grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui horizontal divider">
+                            <h2>{{text.indexPlantarum.duneHeader}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plants panel -->
+            <table class="ui table">
+                <thead>
+                    <tr>
+                        <th>{{text.indexPlantarum.table.type}}</th>
+                        <th>{{text.indexPlantarum.table.family}}</th>
+                        <th>{{text.indexPlantarum.table.name}}</th>
+                        <th>{{text.indexPlantarum.table.namePL}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each dunePlants}}
+                        <tr class="animated fadeInUp">
+                            {{#with generalInformations}}
+                                <td>
+                                    {{formatType type}}
+                                </td>
+                                <td>
+                                    {{family.name}}
+                                </td>
+                                <td>
+                                    {{#with name}}
+                                        {{genus}}
+                                        {{#if hybrid}}
+                                            &times;
+                                        {{/if}}
+                                        <i>{{species}}</i>
+                                        {{#if variety}}
+                                            var. <i>{{variety}}</i>
+                                        {{/if}}
+                                        {{#if subspecies}}
+                                            subsp. {{subspecies}}
+                                        {{/if}}
+                                        {{authorship}}
+                                        {{#if cultivar}}
+                                            '{{cultivar}}'
+                                        {{/if}}
+                                    {{/with}}
+                                </td>
+                                <td>
+                                    {{namePL}}
+                                </td>
+                            {{/with}}
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{>pagination page='dune'}}
+        </div>
+    </div>
+</template>

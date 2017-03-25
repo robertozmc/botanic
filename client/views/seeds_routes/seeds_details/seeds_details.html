@@ -1,0 +1,125 @@
+<template name="seedsDetails">
+    {{>breadcrumb sections='3' mainSection='seeds' currentSection='details'}}
+    {{#if Template.subscriptionsReady}}
+        {{#if seed}}
+            <div class="ui grid">
+                <div class="row">
+                    <div class="column">
+                        <a href="{{seedsEditPath seed._id}}" class="ui animated fade primary button right floated">
+                            <div class="visible content">
+                                Edytuj
+                            </div>
+                            <div class="hidden content">
+                                <i class="write icon"></i>
+                            </div>
+                        </a>
+                        <a href="{{previousPage}}" class="ui animated neutral button right floated">
+                            <div class="visible content">
+                                Wstecz
+                            </div>
+                            <div class="hidden content">
+                                <i class="arrow left icon"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row animated fadeIn">
+                    <div class="column">
+                        <table class="ui celled striped table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Pole
+                                    </th>
+                                    <th>
+                                        Wartość
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#with seed}}
+                                    <tr>
+                                        <td>
+                                            ID
+                                        </td>
+                                        <td>
+                                            {{_id}}
+                                        </td>
+                                    </tr>
+                                    {{#with plant}}
+                                        <tr>
+                                            <td>
+                                                Roślina
+                                            </td>
+                                            <td>
+                                                <a class="link-details" href="{{plantURL id}}">{{{name}}}</a>
+                                            </td>
+                                        </tr>
+                                    {{/with}}
+                                    <tr>
+                                        <td>
+                                            Ilość
+                                        </td>
+                                        <td>
+                                            {{quantity}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Jednostka
+                                        </td>
+                                        <td>
+                                            {{formatUnit unit}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Data zebrania
+                                        </td>
+                                        <td>
+                                            {{formatDate date}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Przeznaczenie
+                                        </td>
+                                        <td>
+                                            {{formatUsage usage}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Notatka
+                                        </td>
+                                        <td>
+                                            {{note}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Data utworzenia
+                                        </td>
+                                        <td>
+                                            {{formatDateTime createdAt}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Data edycji
+                                        </td>
+                                        <td>
+                                            {{formatDateTime editedAt}}
+                                        </td>
+                                    </tr>
+                                {{/with}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+            {{>errorMessage}}
+        {{/if}}
+    {{/if}}
+</template>

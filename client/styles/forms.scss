@@ -1,0 +1,41 @@
+.login.form {
+    .field {
+        .labeled {
+            .label {
+                width: 100px;
+            }
+        }
+    }
+}
+
+.register.form {
+    .field {
+        .labeled {
+            .label {
+                width: 150px;
+            }
+        }
+    }
+}
+
+.labeled {
+    .label {
+        width: 220px;
+    }
+}
+
+.error {
+    .labeled {
+        .label {
+            background: darken(#fff6f6, 10%);
+            color: #9f3a38;
+
+            border: 1px solid;
+            border-color: #e0b4b4;
+        }
+    }
+}
+
+#textEditorToolbar {
+    padding-bottom: 15px;
+}

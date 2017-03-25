@@ -1,0 +1,82 @@
+<template name="header">
+    {{#if isPublicRoute}}
+        <div class="ui grid">
+            <div class="row">
+                <div class="four wide column">
+                    <h1 class="centered">{{text.header.title}}</h1>
+                </div>
+                <div class="eleven wide column">
+                    <div class="ui secondary pointing nine item menu">
+                        <a href={{path 'main'}} class="item" id="header-main-page">{{text.header.mainPage}}</a>
+                        <a href={{path 'informations'}} class="item" id="header-informations">{{text.header.informations}}</a>
+                        <a href={{path 'activity'}} class="item" id="header-activity">{{text.header.activity}}</a>
+                        <a href={{path 'history'}} class="item" id="header-history">{{text.header.history}}</a>
+                        <a href={{path 'visit'}} class="item" id="header-visit">{{text.header.visit}}</a>
+                        <a href={{path 'gallery'}} class="item" id="header-gallery">{{text.header.gallery}}</a>
+                        <a href={{path 'indexSeminum'}} class="item" id="header-index-seminum">{{text.header.indexSeminum}}</a>
+                        <a href={{path 'indexPlantarum'}} class="item" id="header-index-plantarum">{{text.header.indexPlantarum}}</a>
+                        <a href={{path 'projectsSponsors'}} class="item" id="header-projects-sponsors">{{text.header.projectsSponsors}}</a>
+                    </div>
+                </div>
+                <div class="one wide column">
+                    <i class="pl flag" id="polish" data-content={{text.header.polish}} data-position="right center"></i><br>
+                    <i class="gb flag" id="english" data-content={{text.header.english}} data-position="right center"></i>
+                </div>
+            </div>
+        </div>
+    {{else}}
+        <div class="row">
+            <div class="column">
+                <div class="ui borderless menu">
+                    <a href={{path 'home'}} class="item">
+                        <i class="home icon"></i>Start
+                    </a>
+                    {{#if isInRole 'orders,admin'}}
+                        <a href={{path 'orders'}} class="item">
+                            <i class="shop icon"></i>Zamówienia
+                        </a>
+                    {{/if}}
+                    {{#if isInRole 'plants,admin'}}
+                        <a href={{path 'plants'}} class="item">
+                            <i class="tree icon"></i>Rośliny
+                        </a>
+                    {{/if}}
+                    {{#if isInRole 'seeds,admin'}}
+                        <a href={{path 'seeds'}} class="item">
+                            <i class="leaf icon"></i>Nasiona
+                        </a>
+                    {{/if}}
+                    {{#if isInRole 'gardens,admin'}}
+                        <a href={{path 'gardens'}} class="item">
+                            <i class="map signs icon"></i>Ogrody botaniczne
+                        </a>
+                    {{/if}}
+                    {{#if isInRole 'news,admin'}}
+                        <a href={{path 'news'}} class="item">
+                            <i class="world icon"></i>News
+                        </a>
+                    {{/if}}
+                    {{#if isInRole 'photos,admin'}}
+                        <a href={{path 'photos'}} class="item">
+                            <i class="image icon"></i>Galeria zdjęć
+                        </a>
+                    {{/if}}
+                    {{#if isInRole 'admin'}}
+                        <a href={{path 'users'}} class="item">
+                            <i class="users icon"></i>Użytkownicy
+                        </a>
+                    {{/if}}
+                    <div class="right menu">
+                        <span class="item user-name">{{user.name}}</span>
+                        <a href={{path 'account'}} class="item">
+                            <i class="user icon"></i>Konto
+                        </a>
+                        <a class="item" id="logout">
+                            <i class="sign out icon"></i>Wyloguj
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+</template>

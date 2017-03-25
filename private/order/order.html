@@ -1,0 +1,150 @@
+<div class="ui grid">
+    <div class="row">
+        <div class="column">
+            <div class="ui centered grid">
+                <div class="column">
+                    <img src="{{logoURL}}" style="max-width:100%; max-height:100%;"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="right floated right aligned column">
+            <h5>Wygenerowano: {{generated}}</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <div class="ui centered grid">
+                <div class="center aligned column">
+                    <h1>Zamówienie</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <h5>Data złożenia zamówienia: {{ordered}}</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <div class="ui centered grid">
+                <div class="column">
+                    <table class="ui striped very compact table">
+                        <thead>
+                            <tr>
+                                <th class="one wide">
+                                    Lp.
+                                </th>
+                                <th>
+                                    Nazwa
+                                </th>
+                                <th>
+                                    Rodzina
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each orderPlants}}
+                                <tr>
+                                    <td>
+                                        {{index}}
+                                    </td>
+                                    {{#with plant}}
+                                        {{#with name}}
+                                            <td>
+                                                {{genus}}
+                                                {{#if hybrid}}
+                                                    &times;
+                                                {{/if}}
+                                                <i>{{species}}</i>
+                                                {{#if variety}}
+                                                    var. {{variety}}
+                                                {{/if}}
+                                                {{#if subspecies}}
+                                                    subsp. {{subspecies}}
+                                                {{/if}}
+                                                {{authorship}}
+                                                {{#if cultivar}}
+                                                    '{{cultivar}}'
+                                                {{/if}}
+                                            </td>
+                                        {{/with}}
+                                        <td>
+                                            {{family}}
+                                        </td>
+                                    {{/with}}
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <img src="{{cutURL}}"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="eight wide column">
+            <div class="ui piled segment">
+                <h3>Adresat</h3>
+                <div class="ui list">
+                    {{#with order.orderingParty}}
+                        <div class="item">
+                            {{name}}
+                        </div>
+                        {{#if subname}}
+                            <div class="item">
+                                {{subname}}
+                            </div>
+                        {{/if}}
+                        {{#if representative}}
+                            <div class="item">
+                                {{representative}}
+                            </div>
+                        {{/if}}
+                        <br>
+                        {{#with address}}
+                            <div class="item">
+                                {{street}} {{number}}
+                            </div>
+                            <div class="item">
+                                {{postalCode}}, {{city}}
+                            </div>
+                            <div class="item">
+                                {{country}}
+                            </div>
+                        {{/with}}
+                    {{/with}}
+                </div>
+            </div>
+        </div>
+        <div class="eight wide column">
+            <div class="ui piled segment">
+                <h3>Nadawca</h3>
+                <div class="ui list">
+                    <div class="item">
+                        Gdański Uniwersytet Medyczny
+                    </div>
+                    <div class="item">
+                        Katedra i Zakład Farmakognozji z Ogrodem Roślin Leczniczych
+                    </div>
+                    <br>
+                    <div class="item">
+                        Al. Gen. J. Hallera 107
+                    </div>
+                    <div class="item">
+                        80-416, Gdańsk
+                    </div>
+                    <div class="item">
+                        Polska
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

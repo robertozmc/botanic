@@ -1,0 +1,23 @@
+{
+  "name": "botanic",
+  "private": true,
+  "scripts": {
+    "mongo": "set MONGO_URL=mongodb://localhost:27017/meteor && mongod --dbpath D:/MongoDB/botanic --logpath D:/MongoDB/botanic/logs/botanic.log",
+    "start": "meteor --settings settings-development.json",
+    "production": "meteor --settings settings-production.json"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.20.0",
+    "bcrypt": "^0.8.7",
+    "clipboard": "^1.5.12",
+    "dropzone": "^4.3.0",
+    "fibers": "^1.0.15",
+    "meteor-node-stubs": "~0.2.0",
+    "npm": "^3.10.5",
+    "phantomjs-prebuilt": "^2.1.13",
+    "spin": "0.0.1",
+    "webshot": "^0.18.0",
+    "winston": "^2.2.0",
+    "winston-papertrail": "^1.0.2"
+  }
+}

@@ -1,0 +1,186 @@
+<template name="users">
+    <div class="ui horizontally padded divided grid">
+        <div class="two wide column">
+            <div class="ui form">
+                <div class="field">
+                    <div class="ui icon fluid input">
+                        <input type="text" placeholder="Szukaj..." id="search">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="permissions">Uprawnienia:</label>
+                    <div class="ui multiple selection fluid dropdown" id="permissions-dropdown">
+                        <input type="hidden" name="permissions" id="permissions">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Uprawnienia</div>
+                        <div class="menu">
+                            <div class="item" data-value="admin">Admin</div>
+                            <div class="item" data-value="orders">Zamówienia</div>
+                            <div class="item" data-value="gardens">Ogrody</div>
+                            <div class="item" data-value="plants">Rośliny</div>
+                            <div class="item" data-value="seeds">Nasiona</div>
+                            <div class="item" data-value="news">News</div>
+                            <div class="item" data-value="gallery">Galeria</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearPermissions">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="verified">Status:</label>
+                    <div class="ui selection fluid dropdown" id="verified-dropdown">
+                        <input type="hidden" name="verified" id="verified">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Status</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">Zatwierdzony</div>
+                            <div class="item" data-value="false">Niezatwierdzony</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearVerified">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="createdDateFrom">Data dodania:</label>
+                    <div class="ui left icon fluid action input calendar" name="createdDateFrom" id="createdDateFromCalendar">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Od">
+                        <button class="ui icon button" id="clearCreatedDateFrom"><i class="remove icon"></i></button>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon fluid action input calendar" name="createdDateTo" id="createdDateToCalendar">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Do">
+                        <button class="ui icon button" id="clearCreatedDateTo"><i class="remove icon"></i></button>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="recordsPerPage">Ilość wyników na stronę:</label>
+                    <div class="ui fluid buttons" name="recordsPerPage">
+                        <button class="ui button recordsPerPage" id="10recordsPerPage" value="10">10</button>
+                        <button class="ui button recordsPerPage" id="25recordsPerPage" value="25">25</button>
+                        <button class="ui button recordsPerPage" id="50recordsPerPage" value="50">50</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fourteen wide column">
+            {{>breadcrumb sections='2' mainSection='users'}}
+            {{>basicControlPanel report=true}}
+            {{>pagination page='users'}}
+            {{#if Template.subscriptionsReady}}
+                <div class="ui grid animated fadeIn">
+                    <div class="column">
+                        <table class="ui striped selectable table">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-sort="name">
+                                        Imię i nazwisko
+                                        {{{sort 'name'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="username">
+                                        Login
+                                        {{{sort 'username'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="email">
+                                        Adres e-mail
+                                        {{{sort 'email'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="createdAt">
+                                        Data utworzenia
+                                        {{{sort 'createdAt'}}}
+                                    </th>
+                                    <th class="sort" data-sort="roles">
+                                        Uprawnienia
+                                    </th>
+                                    <th class="sortable" data-sort="verified">
+                                        Status
+                                        {{{sort 'verified'}}}
+                                    </th>
+                                    <th>
+                                        &nbsp;
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each users}}
+                                    <tr class="{{isVerified _id}} dropdowns animated fadeInUp" id="{{_id}}">
+                                        <td>
+                                            {{name}}
+                                        </td>
+                                        <td>
+                                            {{username}}
+                                        </td>
+                                        <td>
+                                            {{#if emails.[0].address}}
+                                                <i class="copy icon link copyEmail" data-content="Kopiuj" data-position="left center"></i> {{emails.[0].address}}
+                                            {{/if}}
+                                        </td>
+                                        <td>
+                                            {{formatDate createdAt}}
+                                        </td>
+                                        <td>
+                                            <div class="ui multiple selection dropdown roles {{isMainAdmin username}}">
+                                                <input name="roles" type="hidden">
+                                                <i class="dropdown icon"></i>
+                                                <div class="default text">Uprawnienia</div>
+                                                <div class="menu">
+                                                    <div class="item" data-value="admin">Admin</div>
+                                                    <div class="item" data-value="orders">Zamówienia</div>
+                                                    <div class="item" data-value="gardens">Ogrody</div>
+                                                    <div class="item" data-value="plants">Rośliny</div>
+                                                    <div class="item" data-value="seeds">Nasiona</div>
+                                                    <div class="item" data-value="news">News</div>
+                                                    <div class="item" data-value="gallery">Galeria</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {{#if isYou _id}}
+                                                <i class="icon user"></i> To Ty
+                                            {{else}}
+                                                {{#if emails.[0].verified}}
+                                                    <i class="icon checkmark link verifyButton" data-content="Dezaktywuj" data-position="left center"></i> Zatwierdzony
+                                                {{else}}
+                                                    <i class="icon remove link verifyButton" data-content="Aktywuj" data-position="left center"></i> Niezatwierdzony
+                                                {{/if}}
+                                            {{/if}}
+                                        </td>
+                                        <td>
+                                            {{#if isYou _id}}
+                                            {{else}}
+                                                <i class="icon remove user link deleteButton" data-content="Usuń" data-position="right center"></i>
+                                            {{/if}}
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {{else}}
+                {{>loading}}
+            {{/if}}
+            {{>modalDelete}}
+            {{>modalReportPrint}}
+        </div>
+    </div>
+</template>

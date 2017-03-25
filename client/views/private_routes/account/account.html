@@ -1,0 +1,111 @@
+<template name="account">
+    {{>breadcrumb sections='2' mainSection='account'}}
+    <div class="ui grid animated fadeIn">
+        <div class="row">
+            <div class="column">
+                <form class="ui form" id="form-name">
+                    <h3 class="ui horizontal divider header">
+                        <i class="browser icon"></i>
+                        DANE OSOBOWE
+                    </h3>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="user icon"></i>
+                                Imię i nazwisko
+                            </div>
+                            <input type="text" name="name" placeholder="Imię i nazwisko" id="name" value="{{user.name}}">
+                        </div>
+                    </div>
+                    <button class="ui positive labeled icon button right floated" id="buttonName">
+                        <i class="edit icon"></i>
+                        Zmień
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <form class="ui form" id="form-email">
+                    <h3 class="ui horizontal divider header">
+                        <i class="at icon"></i>
+                        ADRES E-MAIL
+                    </h3>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="at icon"></i>
+                                Adres e-mail
+                            </div>
+                            <input type="text" name="email" placeholder="orl@gumed.edu.pl" id="email" value="{{user.emails.[0].address}}">
+                        </div>
+                    </div>
+                    <button class="ui positive labeled icon button right floated" id="buttonEmail">
+                        <i class="edit icon"></i>
+                        Zmień
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <form class="ui form" id="form-password">
+                    <h3 class="ui horizontal divider header">
+                        <i class="lock icon"></i>
+                        HASŁO
+                    </h3>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="lock icon"></i>
+                                Stare hasło
+                            </div>
+                            <input type="password" name="passwordOld" placeholder="Stare hasło" id="passwordOld">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="lock icon"></i>
+                                Nowe hasło
+                            </div>
+                            <input type="password" name="passwordNew" placeholder="Nowe hasło" id="passwordNew">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="lock icon"></i>
+                                Powtórz nowe hasło
+                            </div>
+                            <input type="password" name="passwordConfirm" placeholder="Powtórz hasło" id="passwordConfirm">
+                        </div>
+                    </div>
+                    <button class="ui positive labeled icon button right floated" id="buttonPassword">
+                        <i class="edit icon"></i>
+                        Zmień
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="one column centered row">
+            <div class="column">
+                {{#if isInRole 'admin'}}
+                {{else}}
+                    <h3 class="ui horizontal divider header">
+                        <i class="remove icon"></i>
+                        USUŃ KONTO
+                    </h3>
+                    <div class="ui animated fade negative button" id="buttonDelete">
+                        <div class="visible content">
+                            Usuń konto
+                        </div>
+                        <div class="hidden content">
+                            Na pewno?
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</template>

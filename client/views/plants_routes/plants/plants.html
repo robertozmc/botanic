@@ -1,0 +1,912 @@
+<template name="plants">
+    <div class="ui horizontally padded divided grid">
+        <!-- Filtering sidebar -->
+        <div class="two wide column">
+            <div class="ui form">
+                <!-- Search input field -->
+                <div class="field">
+                    <div class="ui icon fluid input">
+                        <input type="text" placeholder="Szukaj..." id="search">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+                <!-- Hybrid dropdown -->
+                <div class="field">
+                    <label for="hybrid">Hybryda:</label>
+                    <div class="ui selection fluid dropdown" id="hybrid-dropdown">
+                        <input type="hidden" name="hybrid" id="hybrid">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Hybryda</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear hybrid dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearHybrid">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Division dropdown -->
+                <div class="field">
+                    <label for="division">Gromada:</label>
+                    <div class="ui selection fluid dropdown" id="division-dropdown">
+                        <input type="hidden" name="division" id="division">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Gromada</div>
+                        <div class="menu">
+                            <div class="item" data-value="angiosperm">Okrytonasienne</div>
+                            <div class="item" data-value="gymnosperm">Nagonasienne</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear division dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearDivision">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clade dropdown -->
+                <div class="field">
+                    <label for="hybrid">Klad:</label>
+                    <div class="ui selection fluid dropdown" id="clade-dropdown">
+                        <input type="hidden" name="clade" id="clade">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Klad</div>
+                        <div class="menu">
+                            <div class="item" data-value="monocotyledon">Jednoliścienne</div>
+                            <div class="item" data-value="dicotyledon">Dwuliścienne</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear clade dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearClade">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Type dropdown -->
+                <div class="field">
+                    <label for="type">Charakter:</label>
+                    <div class="ui multiple selection fluid dropdown" id="type-dropdown">
+                        <input type="hidden" name="type" id="type">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Charakter</div>
+                        <div class="menu">
+                            <div class="item" data-value="tree">Drzewo</div>
+                            <div class="item" data-value="shrub">Krzew</div>
+                            <div class="item" data-value="littleShrub">Krzewinka</div>
+                            <div class="item" data-value="annualVine">Pnącze jednoroczne</div>
+                            <div class="item" data-value="perennialVine">Pnącze wieloletnie</div>
+                            <div class="item" data-value="perennial">Bylina</div>
+                            <div class="item" data-value="annual">Roślina jednoroczna</div>
+                            <div class="item" data-value="biennial">Roślina dwuletnia</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear type dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearType">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Region of living dropdown -->
+                <div class="field">
+                    <label for="regionOfLiving">Występowanie:</label>
+                    <div class="ui multiple selection fluid dropdown" id="regionOfLiving-dropdown">
+                        <input type="hidden" name="regionOfLiving" id="regionOfLiving">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Występowanie</div>
+                        <div class="menu">
+                            <div class="item" data-value="africa">Afryka</div>
+                            <div class="item" data-value="northAfrica">Afryka - Północ</div>
+                            <div class="item" data-value="southAfrica">Afryka - Południe</div>
+                            <div class="item" data-value="eastAfrica">Afryka - Wschód</div>
+                            <div class="item" data-value="westAfrica">Afryka - Zachód</div>
+                            <div class="item" data-value="centralAfrica">Afryka - Centralna</div>
+                            <div class="item" data-value="asia">Azja</div>
+                            <div class="item" data-value="northAsia">Azja - Północ</div>
+                            <div class="item" data-value="southAsia">Azja - Południe</div>
+                            <div class="item" data-value="eastAsia">Azja - Wschód</div>
+                            <div class="item" data-value="westAsia">Azja - Zachód</div>
+                            <div class="item" data-value="centralAsia">Azja - Centralna</div>
+                            <div class="item" data-value="australia">Australia</div>
+                            <div class="item" data-value="northAustralia">Australia - Północ</div>
+                            <div class="item" data-value="southAustralia">Australia - Południe</div>
+                            <div class="item" data-value="eastAustralia">Australia - Wschód</div>
+                            <div class="item" data-value="westAustralia">Australia - Zachód</div>
+                            <div class="item" data-value="centralAustralia">Australia - Centralna</div>
+                            <div class="item" data-value="northAmerica">Ameryka Północna</div>
+                            <div class="item" data-value="northNorthAmerica">Ameryka Północna - Północ</div>
+                            <div class="item" data-value="southNorthAmerica">Ameryka Północna - Południe</div>
+                            <div class="item" data-value="eastNorthAmerica">Ameryka Północna - Wschód</div>
+                            <div class="item" data-value="westNorthAmerica">Ameryka Północna - Zachód</div>
+                            <div class="item" data-value="centralNorthAmerica">Ameryka Północna - Centralna</div>
+                            <div class="item" data-value="southAmerica">Ameryka Południowa</div>
+                            <div class="item" data-value="northSouthAmerica">Ameryka Południowa - Północ</div>
+                            <div class="item" data-value="southSouthAmerica">Ameryka Południowa - Południe</div>
+                            <div class="item" data-value="eastSouthAmerica">Ameryka Południowa - Wschód</div>
+                            <div class="item" data-value="westSouthAmerica">Ameryka Południowa - Zachód</div>
+                            <div class="item" data-value="centralSouthAmerica">Ameryka Południowa - Centralna</div>
+                            <div class="item" data-value="europe">Europa</div>
+                            <div class="item" data-value="northEurope">Europa - Północ</div>
+                            <div class="item" data-value="southEurope">Europa - Południe</div>
+                            <div class="item" data-value="eastEurope">Europa - Wschód</div>
+                            <div class="item" data-value="westEurope">Europa - Zachód</div>
+                            <div class="item" data-value="centralEurope">Europa - Centralna</div>
+                            <div class="item" data-value="atlanticOcean">Ocean Atlantycki</div>
+                            <div class="item" data-value="indianOcean">Ocean Indyjski</div>
+                            <div class="item" data-value="pacificOcean">Ocean Spokojny</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear region of living dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearRegionOfLiving">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Type of protection dropdown -->
+                <div class="field">
+                    <label for="typeOfProtection">Typ ochrony:</label>
+                    <div class="ui multiple selection fluid dropdown" id="typeOfProtection-dropdown">
+                        <input type="hidden" name="typeOfProtection" id="typeOfProtection">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Typ ochrony</div>
+                        <div class="menu">
+                            <div class="item" data-value="fullProtection">Ochrona ścisła</div>
+                            <div class="item" data-value="partialProtection">Ochrona częściowa</div>
+                            <div class="item" data-value="noProtection">Brak ochrony</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear type of protection dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearTypeOfProtection">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Endangered dropdown -->
+                <div class="field">
+                    <label for="endangered">Zagrożony wyginięciem:</label>
+                    <div class="ui selection fluid dropdown" id="endangered-dropdown">
+                        <input type="hidden" name="endangered" id="endangered">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Zagrożony wyginięciem</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear endangered dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearEndangered">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ability to sow input fields -->
+                <div class="field">
+                    <label for="abilityToSowFrom">Zdolność nasiewania:</label>
+                    <div class="ui input quantityInput" name="abilityToSowFrom">
+                        <input type="text" placeholder="Od" id="abilityToSowFromInput">
+                    </div> -
+                    <div class="ui input quantityInput" name="abilityToSowTo">
+                        <input type="text" placeholder="Do" id="abilityToSowToInput">
+                    </div>
+                </div>
+                <!-- Clear ability to sow input fields -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearAbilityToSow">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ability to propagate input fields -->
+                <div class="field">
+                    <label for="abilityToPropagateFrom">Zdolność rozmnażania:</label>
+                    <div class="ui input quantityInput" name="abilityToPropagateFrom">
+                        <input type="text" placeholder="Od" id="abilityToPropagateFromInput">
+                    </div> -
+                    <div class="ui input quantityInput" name="abilityToPropagateTo">
+                        <input type="text" placeholder="Do" id="abilityToPropagateToInput">
+                    </div>
+                </div>
+                <!-- Clear ability to propagate input fields -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearAbilityToPropagate">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Place in garden dropdown -->
+                <div class="field">
+                    <label for="place">Miejsce w ogrodzie:</label>
+                    <div class="ui multiple selection fluid dropdown" id="place-dropdown">
+                        <input type="hidden" name="place" id="place">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Miejsce w ogrodzie</div>
+                        <div class="menu">
+                            <div class="item" data-value="decorativeDepartment">Dział Roślin Ozdobnych</div>
+                            <div class="item" data-value="arboretum">Arboretum</div>
+                            <div class="item" data-value="moor">Wrzosowisko</div>
+                            <div class="item" data-value="dune">Wydma</div>
+                            <div class="item" data-value="pharmacognosy">Farmakognozja</div>
+                            <div class="item" data-value="systematics">Dział Systematyki Roślin</div>
+                            <div class="item" data-value="medicinalPlantsSector">Dział Roślin Leczniczych</div>
+                            <div class="item" data-value="greenhouse">Szklarnia</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear place in garden dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearPlace">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Quantity input fields -->
+                <div class="field">
+                    <label for="quantityFrom">Ilość:</label>
+                    <div class="ui input quantityInput" name="quantityFrom">
+                        <input type="text" placeholder="Od" id="quantityFromInput">
+                    </div> -
+                    <div class="ui input quantityInput" name="quantityTo">
+                        <input type="text" placeholder="Do" id="quantityToInput">
+                    </div>
+                </div>
+                <!-- Clear quantity input fields -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearQuantity">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Import type dropdown -->
+                <div class="field">
+                    <label for="importType">Rodzaj sprowadzenia:</label>
+                    <div class="ui selection fluid dropdown" id="importType-dropdown">
+                        <input type="hidden" name="importType" id="importType">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Rodzaj sprowadzenia</div>
+                        <div class="menu">
+                            <div class="item" data-value="seeds">Nasiona</div>
+                            <div class="item" data-value="seedling">Sadzonka</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear import type dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearImportType">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Import year input fields -->
+                <div class="field">
+                    <label for="importDateFrom">Rok sprowadzenia:</label>
+                    <div class="ui left icon fluid action input calendar" name="importDateFrom" id="importDateFromCalendar">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Od">
+                        <button class="ui icon button" id="clearImportDateFrom"><i class="remove icon"></i></button>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon fluid action input calendar" name="importDateTo" id="importDateToCalendar">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Do">
+                        <button class="ui icon button" id="clearImportDateTo"><i class="remove icon"></i></button>
+                    </div>
+                </div>
+                <!-- Import garden dropdown -->
+                <div class="field">
+                    <label for="importGarden">Skąd sprowadzono:</label>
+                    <div class="ui multiple search selection fluid dropdown" id="importGarden-dropdown">
+                        <input type="hidden" name="importGarden" id="importGarden">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Ogród botaniczny</div>
+                    </div>
+                </div>
+                <!-- Clear import garden dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearImportGarden">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Research at pharmacy dropdown -->
+                <div class="field">
+                    <label for="researchAtPharmacy">Badano na farmacji:</label>
+                    <div class="ui selection fluid dropdown" id="researchAtPharmacy-dropdown">
+                        <input type="hidden" name="researchAtPharmacy" id="researchAtPharmacy">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Badano na farmacji</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear research at pharmacy dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearResearchAtPharmacy">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Herbarium dropdown -->
+                <div class="field">
+                    <label for="herbarium">Zielnik:</label>
+                    <div class="ui selection fluid dropdown" id="herbarium-dropdown">
+                        <input type="hidden" name="herbarium" id="herbarium">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Zielnik</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear herbarium dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearHerbarium">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Confirmed dropdown -->
+                <div class="field">
+                    <label for="confirmed">Potwierdzenie botanika:</label>
+                    <div class="ui selection fluid dropdown" id="confirmed-dropdown">
+                        <input type="hidden" name="confirmed" id="confirmed">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Potwierdzenie botanika</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear confirmed dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearConfirmed">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Characteristic -->
+                <!-- Pharmacopoeial dropdown -->
+                <div class="field">
+                    <label for="pharmacopoeial">Farmakopealna:</label>
+                    <div class="ui selection fluid dropdown" id="pharmacopoeial-dropdown">
+                        <input type="hidden" name="pharmacopoeial" id="pharmacopoeial">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Farmakopealna</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear pharmacopoeial dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearPharmacopoeial">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Medicinal dropdown -->
+                <div class="field">
+                    <label for="medicinal">Lecznicza:</label>
+                    <div class="ui selection fluid dropdown" id="medicinal-dropdown">
+                        <input type="hidden" name="medicinal" id="medicinal">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Lecznicza</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear medicinal dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearMedicinal">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Poisonous dropdown -->
+                <div class="field">
+                    <label for="poisonous">Trująca:</label>
+                    <div class="ui selection fluid dropdown" id="poisonous-dropdown">
+                        <input type="hidden" name="poisonous" id="poisonous">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Trująca</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear poisonous dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearPoisonous">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Edible dropdown -->
+                <div class="field">
+                    <label for="edible">Jadalna:</label>
+                    <div class="ui selection fluid dropdown" id="edible-dropdown">
+                        <input type="hidden" name="edible" id="edible">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Jadalna</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear edible dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearEdible">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Spice dropdown -->
+                <div class="field">
+                    <label for="spice">Przyprawowa:</label>
+                    <div class="ui selection fluid dropdown" id="spice-dropdown">
+                        <input type="hidden" name="spice" id="spice">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Przyprawowa</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear spice dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearSpice">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Appropriable dropdown -->
+                <div class="field">
+                    <label for="appropriable">Użytkowa:</label>
+                    <div class="ui selection fluid dropdown" id="appropriable-dropdown">
+                        <input type="hidden" name="appropriable" id="appropriable">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Użytkowa</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear appropriable dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearAppropriable">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ornamental dropdown -->
+                <div class="field">
+                    <label for="ornamental">Ozdobna:</label>
+                    <div class="ui selection fluid dropdown" id="ornamental-dropdown">
+                        <input type="hidden" name="ornamental" id="ornamental">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Ozdobna</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear ornamental dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearOrnamental">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Bulb dropdown -->
+                <div class="field">
+                    <label for="bulb">Cebulowa:</label>
+                    <div class="ui selection fluid dropdown" id="bulb-dropdown">
+                        <input type="hidden" name="bulb" id="bulb">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Cebulowa</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear bulb dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearBulb">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Evergreen dropdown -->
+                <div class="field">
+                    <label for="evergreen">Zimozielona:</label>
+                    <div class="ui selection fluid dropdown" id="evergreen-dropdown">
+                        <input type="hidden" name="evergreen" id="evergreen">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Zimozielona</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clear evergreen dropdown -->
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearEvergreen">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Create date input fields -->
+                <div class="field">
+                    <label for="createdDateFrom">Data dodania:</label>
+                    <div class="ui left icon fluid action input calendar" name="createdDateFrom" id="createdDateFromCalendar">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Od">
+                        <button class="ui icon button" id="clearCreatedDateFrom"><i class="remove icon"></i></button>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon fluid action input calendar" name="createdDateTo" id="createdDateToCalendar">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Do">
+                        <button class="ui icon button" id="clearCreatedDateTo"><i class="remove icon"></i></button>
+                    </div>
+                </div>
+                <!-- Number records per page buttons -->
+                <div class="field">
+                    <label for="recordsPerPage">Ilość wyników na stronę:</label>
+                    <div class="ui fluid buttons" name="recordsPerPage">
+                        <button class="ui button recordsPerPage" id="10recordsPerPage" value="10">10</button>
+                        <button class="ui button recordsPerPage" id="25recordsPerPage" value="25">25</button>
+                        <button class="ui button recordsPerPage" id="50recordsPerPage" value="50">50</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fourteen wide column">
+            {{>breadcrumb sections='2' mainSection='plants'}}
+            {{>basicControlPanel add=true report=true}}
+            <div class="ui right floated icon circular button" id="helpButton" data-html=
+            "<div class='header'>Znaczenie etykiet</div>
+            <div class='content'>
+                <div class='ui label'>DRO</div> - Dział Roślin Ozdobnych<br><br>
+                <div class='ui label'>A</div> - Arboretum<br><br>
+                <div class='ui label'>Wrz</div> - Wrzosowisko<br><br>
+                <div class='ui label'>Wyd</div> - Wydma<br><br>
+                <div class='ui label'>F</div> - Farmakognozja<br><br>
+                <div class='ui label'>DSR</div> - Dział Systematyki Roślin<br><br>
+                <div class='ui label'>DRL</div> - Dział Roślin Leczniczych<br><br>
+                <div class='ui label'>Sz</div> - Szklarnia<br><br>
+                <div class='ui label'>?</div> - Nieznane miejsce
+            </div>" data-position="bottom left">
+                <i class="help circle outline icon"></i>
+            </div>
+            {{>pagination page='plants'}}
+            {{#if Template.subscriptionsReady}}
+                <div class="ui grid animated fadeIn">
+                    <div class="column">
+                        <table class="ui striped selectable table">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-sort="catalogNumber">
+                                        Numer katalogowy
+                                        {{{sort 'catalogNumber'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="order">
+                                        Rząd
+                                        {{{sort 'order'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="family">
+                                        Rodzina
+                                        {{{sort 'family'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="name">
+                                        Nazwa
+                                        {{{sort 'name'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="namePL">
+                                        Nazwa polska
+                                        {{{sort 'namePL'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="type">
+                                        Charakter
+                                        {{{sort 'type'}}}
+                                    </th>
+                                    <th class="sort" data-sort="place">
+                                        Miejsce w ogrodzie
+                                    </th>
+                                    <th class="sortable" data-sort="quantity">
+                                        Ilość
+                                        {{{sort 'quantity'}}}
+                                    </th>
+                                    <th>
+                                        &nbsp;
+                                    </th>
+                                    <th>
+                                        &nbsp;
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each plants}}
+                                    <tr id="{{_id}}" class="record animated fadeInUp {{isConfirmed _id}}">
+                                        <td>
+                                            {{catalogNumber}}
+                                        </td>
+                                        {{#with generalInformations}}
+                                            <td>
+                                                {{order.name}}
+                                            </td>
+                                            <td>
+                                                {{family.name}}
+                                            </td>
+                                            <td>
+                                                {{#with name}}
+                                                    {{genus}}
+                                                    {{#if hybrid}}
+                                                        &times;
+                                                    {{/if}}
+                                                    <i>{{species}}</i>
+                                                    {{#if variety}}
+                                                        var. <i>{{variety}}</i>
+                                                    {{/if}}
+                                                    {{#if subspecies}}
+                                                        subsp. {{subspecies}}
+                                                    {{/if}}
+                                                    {{authorship}}
+                                                    {{#if cultivar}}
+                                                        '{{cultivar}}'
+                                                    {{/if}}
+                                                {{/with}}
+                                            </td>
+                                            <td>
+                                                {{namePL}}
+                                            </td>
+                                            <td>
+                                                {{formatType type}}
+                                            </td>
+                                        {{/with}}
+                                        {{#with gardenInformations}}
+                                            <td>
+                                                {{#each place}}
+                                                    <div class="ui label">
+                                                        {{formatPlaceShorthand this}}
+                                                    </div>
+                                                {{/each}}
+                                            </td>
+                                            <td class="{{noPlants quantity}}">
+                                                {{quantity}}
+                                            </td>
+                                        {{/with}}
+                                        <td>
+                                            <i class="write icon link editButton" data-content="Edytuj" data-position="left center"></i>
+                                        </td>
+                                        <td>
+                                            <i class="trash icon link deleteButton" data-content="Usuń" data-position="right center"></i>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {{else}}
+                {{>loading}}
+            {{/if}}
+            {{>modalDelete}}
+            {{>modalReportPrint}}
+        </div>
+    </div>
+</template>

@@ -1,0 +1,509 @@
+<template name="plantsDetails">
+    {{>breadcrumb sections='3' mainSection='plants' currentSection='details'}}
+    {{#if Template.subscriptionsReady}}
+        {{#if plant}}
+            <div class="ui grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui vertical animated positive button" id="printLabelButton">
+                            <div class="visible content">
+                                Drukuj tabliczkę
+                            </div>
+                            <div class="hidden content">
+                                <i class="print icon"></i>
+                            </div>
+                        </div>
+                        <a href="{{plantsEditPath plant._id}}" class="ui animated fade primary button right floated">
+                            <div class="visible content">
+                                Edytuj
+                            </div>
+                            <div class="hidden content">
+                                <i class="write icon"></i>
+                            </div>
+                        </a>
+                        <a href="{{previousPage}}" class="ui animated neutral button right floated">
+                            <div class="visible content">
+                                Wstecz
+                            </div>
+                            <div class="hidden content">
+                                <i class="arrow left icon"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row animated fadeIn">
+                    <div class="column">
+                        <table class="ui celled striped table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Pole
+                                    </th>
+                                    <th>
+                                        Wartość
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#with plant}}
+                                    <tr>
+                                        <td>
+                                            ID
+                                        </td>
+                                        <td>
+                                            {{_id}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Numer katalogowy
+                                        </td>
+                                        <td>
+                                            {{catalogNumber}}
+                                        </td>
+                                    </tr>
+                                    {{#with generalInformations}}
+                                        {{#with name}}
+                                            <tr>
+                                                <td>
+                                                    Rodzaj
+                                                </td>
+                                                <td>
+                                                    {{genus}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Gatunek
+                                                </td>
+                                                <td>
+                                                    <i>{{species}}</i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Odmiana
+                                                </td>
+                                                <td>
+                                                    {{variety}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Podgatunek
+                                                </td>
+                                                <td>
+                                                    {{subspecies}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Kultywar
+                                                </td>
+                                                <td>
+                                                    {{cultivar}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Autor/Autorzy
+                                                </td>
+                                                <td>
+                                                    {{authorship}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Hybryda
+                                                </td>
+                                                <td>
+                                                    {{#if hybrid}}
+                                                        Tak
+                                                    {{else}}
+                                                        Nie
+                                                    {{/if}}
+                                                </td>
+                                            </tr>
+                                        {{/with}}
+                                        <tr>
+                                            <td>
+                                                Nazwa polska
+                                            </td>
+                                            <td>
+                                                {{namePL}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Gromada
+                                            </td>
+                                            <td>
+                                                {{formatDivision division}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Klad
+                                            </td>
+                                            <td>
+                                                {{formatClade clade}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Rząd
+                                            </td>
+                                            <td>
+                                                {{order.name}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Rodzina
+                                            </td>
+                                            <td>
+                                                {{family.name}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Charakter
+                                            </td>
+                                            <td>
+                                                {{formatType type}}
+                                            </td>
+                                        </tr>
+                                        {{#with regionOfLiving}}
+                                            <tr>
+                                                <td>
+                                                    Występowanie
+                                                </td>
+                                                <td>
+                                                    {{#each continent}}
+                                                        <div class="ui label">
+                                                            {{formatContinent this}}
+                                                        </div>
+                                                    {{/each}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Występowanie - Opis
+                                                </td>
+                                                <td>
+                                                    {{description}}
+                                                </td>
+                                            </tr>
+                                        {{/with}}
+                                        <tr>
+                                            <td>
+                                                Siedlisko
+                                            </td>
+                                            <td>
+                                                {{habitat}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Typ ochrony
+                                            </td>
+                                            <td>
+                                                {{formatTypeOfProtection typeOfProtection}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Zagrożenie wymarciem
+                                            </td>
+                                            <td>
+                                                {{#if endangered}}
+                                                    Tak
+                                                {{else}}
+                                                    Nie
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Surowiec
+                                            </td>
+                                            <td>
+                                                {{rawMaterial}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Zdolność nasiewania
+                                            </td>
+                                            <td>
+                                                {{abilityToSow}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Zdolność rozmnażania
+                                            </td>
+                                            <td>
+                                                {{abilityToPropagate}}
+                                            </td>
+                                        </tr>
+                                    {{/with}}
+                                    {{#with gardenInformations}}
+                                        <tr>
+                                            <td>
+                                                Miejsce w ogrodzie
+                                            </td>
+                                            <td>
+                                                {{#each place}}
+                                                    <div class="ui label">
+                                                        {{formatPlace this}}
+                                                    </div>
+                                                {{/each}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Ilość
+                                            </td>
+                                            <td>
+                                                {{quantity}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Rodzaj sprowadzenia
+                                            </td>
+                                            <td>
+                                                {{formatimportType importType}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Rok sprowadzenia
+                                            </td>
+                                            <td>
+                                                {{importYear}}
+                                            </td>
+                                        </tr>
+                                    {{/with}}
+                                        <tr>
+                                            <td>
+                                                Skąd sprowadzono
+                                            </td>
+                                            <td>
+                                                <a class="link-details" href="{{gardenURL gardenData._id}}">{{gardenData.name}}</a>
+                                            </td>
+                                        </tr>
+                                    {{#with gardenInformations}}
+                                        <tr>
+                                            <td>
+                                                Badano na farmacji
+                                            </td>
+                                            <td>
+                                                {{#if researchAtPharmacy}}
+                                                    Tak
+                                                {{else}}
+                                                    Nie
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Zielnik
+                                            </td>
+                                            <td>
+                                                {{#if herbarium}}
+                                                    Tak
+                                                {{else}}
+                                                    Nie
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Potwierdzenie botanika
+                                            </td>
+                                            <td>
+                                                {{#if confirmed}}
+                                                    Tak
+                                                {{else}}
+                                                    Nie
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                    {{/with}}
+                                    {{#with characteristic}}
+                                        <tr>
+                                            <td>
+                                                Farmakopealna
+                                            </td>
+                                            <td>
+                                                {{#if pharmacopoeial}}
+                                                    Tak
+                                                {{else}}
+                                                    Nie
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Lecznicza
+                                            </td>
+                                            <td>
+                                                {{#if medicinal}}
+                                                    Tak
+                                                {{else}}
+                                                    Nie
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Trująca
+                                            </td>
+                                            <td>
+                                                {{#if poisonous}}
+                                                    Tak
+                                                {{else}}
+                                                    Nie
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Jadalna
+                                            </td>
+                                            <td>
+                                                {{#if edible}}
+                                                    Tak
+                                                {{else}}
+                                                    Nie
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Przyprawowa
+                                            </td>
+                                            <td>
+                                                {{#if spice}}
+                                                    Tak
+                                                {{else}}
+                                                    Nie
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Użytkowa
+                                            </td>
+                                            <td>
+                                                {{#if appropriable}}
+                                                    Tak
+                                                {{else}}
+                                                    Nie
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Ozdobna
+                                            </td>
+                                            <td>
+                                                {{#if ornamental}}
+                                                    Tak
+                                                {{else}}
+                                                    Nie
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Cebulowa
+                                            </td>
+                                            <td>
+                                                {{#if bulb}}
+                                                    Tak
+                                                {{else}}
+                                                    Nie
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Zimozielona
+                                            </td>
+                                            <td>
+                                                {{#if evergreen}}
+                                                    Tak
+                                                {{else}}
+                                                    Nie
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                    {{/with}}
+                                    <tr>
+                                        <td>
+                                            Notatka
+                                        </td>
+                                        <td>
+                                            {{note}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Data utworzenia
+                                        </td>
+                                        <td>
+                                            {{formatDateTime createdAt}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Data edycji
+                                        </td>
+                                        <td>
+                                            {{formatDateTime editedAt}}
+                                        </td>
+                                    </tr>
+                                {{/with}}
+                                {{#with state}}
+                                <tr>
+                                    <td>
+                                        Ilość
+                                    </td>
+                                    <td>
+                                        {{quantity}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Data
+                                    </td>
+                                    <td>
+                                        {{date}}
+                                    </td>
+                                </tr>
+                                {{/with}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{>modalLabelPrint}}
+        {{else}}
+            {{>errorMessage}}
+        {{/if}}
+    {{/if}}
+</template>
+
+<template name="modalLabelPrint">
+    <div class="ui large modal" id="modalLabelPrint">
+        <div class="header">
+            Podgląd tabliczki
+        </div>
+        <div class="content">
+            <iframe id="pdfFrame" name="pdfFrame" src="" height="800px" width="100%"></iframe>
+        </div>
+    </div>
+</template>

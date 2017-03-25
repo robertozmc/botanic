@@ -1,0 +1,49 @@
+<div class="ui grid">
+    <div class="row">
+        <div class="column">
+            <div class="ui centered grid">
+                <div class="column">
+                    <div class="row">
+                        <div class="ui green center aligned segment">
+                            <div class="ui centered grid">
+                                <div class="row">
+                                    <div class="two wide column">
+                                        <img src="{{logoURL}}" style="max-width:100%; max-height:100%;"/>
+                                    </div>
+                                    <div class="ten wide column" style="font-size: 2em; padding-top: 4%;">
+                                        Ogród Roślin Leczniczych GUMed
+                                    </div>
+                                </div>
+                                <div class="ui horizontal divider">{{formatType plant.generalInformations.type}}</div>
+                                <div class="row" style="font-size: 1.5em;">
+                                    {{#with plant.generalInformations.name}}
+                                        {{genus}}&nbsp;
+                                        {{#if hybrid}}
+                                            &times;&nbsp;
+                                        {{/if}}
+                                        <i>{{species}}</i>&nbsp;
+                                        {{#if variety}}
+                                            var. {{variety}}&nbsp;
+                                        {{/if}}
+                                        {{#if subspecies}}
+                                            subsp. {{subspecies}}&nbsp;
+                                        {{/if}}
+                                        {{authorship}}
+                                    {{/with}}
+                                </div>
+                                {{#if plant.generalInformations.name.cultivar}}
+                                    <div class="row">
+                                        '{{cultivar}}'
+                                    </div>
+                                {{/if}}
+                                <div class="row">
+                                    {{plant.generalInformations.namePL}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

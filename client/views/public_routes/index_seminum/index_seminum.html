@@ -1,0 +1,406 @@
+<template name="indexSeminum">
+    <div class="ui grid">
+        <div class="two wide column">
+
+        </div>
+        <div class="twelve wide column">
+            <!-- Page title -->
+            <div class="ui centered grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui horizontal divider">
+                            <div class="indexSeminum-text">
+                                {{text.indexSeminum.header}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page informations -->
+            <div class="ui grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="general-text">
+                            {{{text.indexSeminum.info}}}
+                        </div>
+                        <div class="ui divider"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info message -->
+            <div class="ui icon info message">
+                <i class="close icon"></i>
+                <i class="idea icon"></i>
+                <div class="content">
+                    <div class="header">
+                        {{text.indexSeminum.disclaimerHeader}}
+                    </div>
+                    <p>
+                        {{text.indexSeminum.disclaimerContentFirst}}
+                    </p>
+                    <p>
+                        {{text.indexSeminum.disclaimerContentSecond}}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Warning message -->
+            {{#if warning}}
+                <div class="ui icon error message animated shake">
+                    <i class="warning icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            {{text.indexSeminum.warningHeader}}
+                        </div>
+                        <p>
+                            {{text.indexSeminum.warningContent}}
+                        </p>
+                    </div>
+                </div>
+            {{/if}}
+
+            <!-- Order number message -->
+            {{#if orderNumber}}
+                <div class="ui icon success message">
+                    <i class="close icon"></i>
+                    <i class="thumbs outline up icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            {{text.indexSeminum.orderCompletedHeader}}
+                        </div>
+                        <p>
+                            {{text.indexSeminum.orderCompletedContent}}
+                        </p>
+                        <p>
+                            {{text.indexSeminum.orderNumberText}} <b>{{orderNumber}}</b>
+                        </p>
+                    </div>
+                </div>
+            {{/if}}
+
+            <!-- Buttons panel -->
+            {{#unless isCheckingOrderStatus}}
+                <div class="animated fadeIn">
+                    {{#if isOrdering}}
+                        <div class="ui animated fade positive button" id="acceptButton">
+                            <div class="visible content">{{text.indexSeminum.acceptButton}}</div>
+                            <div class="hidden content">
+                                <i class="checkmark icon"></i>
+                            </div>
+                        </div>
+                        <div class="ui animated fade negative button" id="cancelButton">
+                            <div class="visible content">{{text.indexSeminum.cancelButton}}</div>
+                            <div class="hidden content">
+                                <i class="remove icon"></i>
+                            </div>
+                        </div>
+                    {{else}}
+                        <div class="ui animated fade blue button" id="orderButton">
+                            <div class="visible content">{{text.indexSeminum.orderButton}}</div>
+                            <div class="hidden content">
+                                <i class="shopping basket icon"></i>
+                            </div>
+                        </div>
+                    {{/if}}
+
+                    <!-- Check order status button -->
+                    <div class="ui vertical animated right floated button" id="checkOrderStatusButton">
+                        <div class="visible content">{{text.indexSeminum.checkOrderStatus.checkOrderButton}}</div>
+                        <div class="hidden content">
+                            <i class="shipping icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Seeds panel -->
+                    <table class="ui selectable table">
+                        <thead>
+                            <tr>
+                                <th class="one wide"></th>
+                                <th>{{text.indexSeminum.table.division}}</th>
+                                <th>{{text.indexSeminum.table.clade}}</th>
+                                <th>{{text.indexSeminum.table.family}}</th>
+                                <th>{{text.indexSeminum.table.name}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each indexSeminum}}
+                                <tr class="seminumRow" id="{{_id}}">
+                                    <td>
+                                        {{#if isOrdering}}
+                                            <div class="ui fitted checkbox animated jello">
+                                                <input type="checkbox" name="seed" {{isLimitReached _id}}>
+                                                <label></label>
+                                            </div>
+                                        {{/if}}
+                                    </td>
+                                    {{#with plant}}
+                                        <td>{{formatDivision division}}</td>
+                                        <td>{{formatClade clade}}</td>
+                                        <td>{{family}}</td>
+                                        <td>
+                                            {{#with name}}
+                                                {{genus}}
+                                                {{#if hybrid}}
+                                                    &times;
+                                                {{/if}}
+                                                <i>{{species}}</i>
+                                                {{#if variety}}
+                                                    var. <i>{{variety}}</i>
+                                                {{/if}}
+                                                {{#if subspecies}}
+                                                    subsp. {{subspecies}}
+                                                {{/if}}
+                                                {{authorship}}
+                                                {{#if cultivar}}
+                                                    '{{cultivar}}'
+                                                {{/if}}
+                                            {{/with}}
+                                        </td>
+                                    {{/with}}
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            {{else}}
+                <div class="animated fadeIn">
+                    <div class="ui grid">
+                        <div class="row">
+                            <div class="column">
+                                <!-- Cancel check order status button -->
+                                <div class="ui animated right floated button" id="cancelCheckingOrderStatusButton">
+                                    <div class="visible content">{{text.indexSeminum.checkOrderStatus.backButton}}</div>
+                                    <div class="hidden content">
+                                        <i class="arrow left icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column">
+                                <h2 class="ui horizontal divider header">
+                                    <i class="shipping icon"></i>
+                                    {{text.indexSeminum.checkOrderStatus.header}}
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="four wide column">
+                                <!-- Checking order status form -->
+                                <form class="ui form" id="checkOrderStatusForm">
+                                    <div class="field">
+                                        <div class="ui left icon action input">
+                                            <i class="search icon"></i>
+                                            <input type="text" name="orderNumber" placeholder="{{text.orderNumberPlaceholder}}" id="orderNumber">
+                                            <div class="ui positive button" id="checkOrderStatusButton2">{{text.indexSeminum.checkOrderStatus.checkButton}}</div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        {{#if orderStatus}}
+                            {{#if orderExists}}
+                                <div class="row animated fadeInDown">
+                                    <div class="column">
+                                        <div class="ui horizontal divider">{{text.indexSeminum.checkOrderStatus.status.header}}</div>
+                                        <div class="ui three steps">
+                                            <div class="{{state 'processing' orderStatus}} step">
+                                                <i class="settings icon"></i>
+                                                <div class="content">
+                                                    <div class="title">
+                                                        {{text.indexSeminum.checkOrderStatus.status.processingHeader}}
+                                                    </div>
+                                                    <div class="description">
+                                                        {{text.indexSeminum.checkOrderStatus.status.processingContent}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="{{state 'preparing' orderStatus}} step" id="preparingButton">
+                                                <i class="gift icon"></i>
+                                                <div class="content">
+                                                    <div class="title">
+                                                        {{text.indexSeminum.checkOrderStatus.status.preparingHeader}}
+                                                    </div>
+                                                    <div class="description">
+                                                        {{text.indexSeminum.checkOrderStatus.status.preparingContent}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="{{state 'sent' orderStatus}} step" id="sentButton">
+                                                <i class="truck icon"></i>
+                                                <div class="content">
+                                                    <div class="title">
+                                                        {{text.indexSeminum.checkOrderStatus.status.sentHeader}}
+                                                    </div>
+                                                    <div class="description">
+                                                        {{text.indexSeminum.checkOrderStatus.status.sentContent}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{else}}
+                                <div class="row">
+                                    <div class="column">
+                                        <div class="ui icon error message animated fadeInDown">
+                                            <i class="help icon"></i>
+                                            <div class="content">
+                                                <div class="header">
+                                                    {{text.indexSeminum.checkOrderStatus.status.warningHeader}}
+                                                </div>
+                                                <p>
+                                                    {{text.indexSeminum.checkOrderStatus.status.warningContent}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                </div>
+            {{/unless}}
+        </div>
+        <div class="two wide column">
+
+        </div>
+    </div>
+    <!-- Modal for inserting garden informations -->
+    <div class="ui modal" id="indexSeminumModal">
+        <i class="close icon"></i>
+        <div class="header">
+            <h2 class="ui header">{{text.indexSeminum.modal.modalHeader}}</h2>
+        </div>
+        <div class="content">
+            <form class="ui form" id="orderInformationsForm">
+                <h3 class="ui horizontal divider header">
+                    <i class="browser icon"></i>
+                    {{text.indexSeminum.modal.nameHeader}}
+                </h3>
+                <div class="field">
+                    <div class="ui labeled input">
+                        <div class="ui label">
+                            <i class="browser icon"></i>
+                            {{text.indexSeminum.modal.gardenName}}
+                        </div>
+                        <input type="text" name="name" placeholder="{{text.indexSeminum.modal.gardenNamePlaceholder}}" id="name">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui labeled input">
+                        <div class="ui label">
+                            <i class="browser icon"></i>
+                            {{text.indexSeminum.modal.gardenSubname}}
+                        </div>
+                        <input type="text" name="subname" placeholder="{{text.indexSeminum.modal.gardenSubnamePlaceholder}}" id="subname">
+                    </div>
+                </div>
+                <h3 class="ui horizontal divider header">
+                    <i class="marker icon"></i>
+                    {{text.indexSeminum.modal.addressHeader}}
+                </h3>
+                <div class="field">
+                    <div class="ui labeled input">
+                        <div class="ui label">
+                            <i class="road icon"></i>
+                            {{text.indexSeminum.modal.gardenStreet}}
+                        </div>
+                        <input type="text" name="street" placeholder="{{text.indexSeminum.modal.gardenStreetPlaceholder}}" id="street">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui labeled input">
+                        <div class="ui label">
+                            <i class="building icon"></i>
+                            {{text.indexSeminum.modal.gardenStreetNumber}}
+                        </div>
+                        <input type="text" name="number" placeholder="{{text.indexSeminum.modal.gardenStreetNumberPlaceholder}}" id="number">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui labeled input">
+                        <div class="ui label">
+                            <i class="mail icon"></i>
+                            {{text.indexSeminum.modal.gardenPostalCode}}
+                        </div>
+                        <input type="text" name="postalCode" placeholder="{{text.indexSeminum.modal.gardenPostalCodePlaceholder}}" id="postalCode">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui labeled input">
+                        <div class="ui label">
+                            <i class="industry icon"></i>
+                            {{text.indexSeminum.modal.gardenCity}}
+                        </div>
+                        <input type="text" name="city" placeholder="{{text.indexSeminum.modal.gardenCityPlaceholder}}" id="city">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui labeled input">
+                        <div class="ui label">
+                            <i class="world icon"></i>
+                            {{text.indexSeminum.modal.gardenCountry}}
+                        </div>
+                        <input type="text" name="country" placeholder="{{text.indexSeminum.modal.gardenCountryPlaceholder}}" id="country">
+                    </div>
+                </div>
+                <h3 class="ui horizontal divider header">
+                    <i class="at icon"></i>
+                    {{text.indexSeminum.modal.contactHeader}}
+                </h3>
+                <div class="field">
+                    <div class="ui labeled input">
+                        <div class="ui label">
+                            <i class="call icon"></i>
+                            {{text.indexSeminum.modal.gardenPhone}}
+                        </div>
+                        <input type="text" name="phone" placeholder="{{text.indexSeminum.modal.gardenPhonePlaceholder}}" id="phone">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui labeled input">
+                        <div class="ui label">
+                            <i class="fax icon"></i>
+                            {{text.indexSeminum.modal.gardenFax}}
+                        </div>
+                        <input type="text" name="fax" placeholder="{{text.indexSeminum.modal.gardenFaxPlaceholder}}" id="fax">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui labeled input">
+                        <div class="ui label">
+                            <i class="at icon"></i>
+                            {{text.indexSeminum.modal.gardenEmail}}
+                        </div>
+                        <input type="text" name="email" placeholder="{{text.indexSeminum.modal.gardenEmailPlaceholder}}" id="email">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui labeled input">
+                        <div class="ui label">
+                            <i class="browser icon"></i>
+                            {{text.indexSeminum.modal.gardenWebsite}}
+                        </div>
+                        <input type="text" name="website" placeholder="{{text.indexSeminum.modal.gardenWebsitePlaceholder}}" id="website">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui labeled input">
+                        <div class="ui label">
+                            <i class="user icon"></i>
+                            {{text.indexSeminum.modal.gardenRepresentative}}
+                        </div>
+                        <input type="text" name="representative" placeholder="{{text.indexSeminum.modal.gardenRepresentativePlaceholder}}" id="representative">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui positive button">{{text.indexSeminum.modal.sendButton}}</div>
+            <div class="ui negative button">{{text.indexSeminum.modal.cancelButton}}</div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,20 @@
+<template name="home">
+    <div class="ui grid">
+        <div class="row">
+            <div class="column">
+                {{#if isRole 'admin'}}
+                    {{>segment }}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<template name="segment">
+    <div class="ui pilled segments">
+        <div class="ui segment">
+            <img class="ui centered image" src="../images/logo.png" alt="logo">
+        </div>
+    </div>
+</template>

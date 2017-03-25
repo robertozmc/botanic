@@ -1,0 +1,307 @@
+<template name="ordersDetails">
+    {{>breadcrumb sections='3' mainSection='orders' currentSection='details'}}
+    {{#if Template.subscriptionsReady}}
+        {{#if order}}
+            <div class="ui grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui vertical animated negative button" id="cancelButton">
+                            <div class="visible content">
+                                Anuluj zamówienie
+                            </div>
+                            <div class="hidden content">
+                                <i class="remove icon"></i>
+                            </div>
+                        </div>
+                        <div class="ui vertical animated positive button" id="printButton">
+                            <div class="visible content">
+                                Drukuj
+                            </div>
+                            <div class="hidden content">
+                                <i class="print icon"></i>
+                            </div>
+                        </div>
+                        <a href="{{previousPage}}" class="ui animated neutral button right floated">
+                            <div class="visible content">
+                                Wstecz
+                            </div>
+                            <div class="hidden content">
+                                <i class="arrow left icon"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="ui divided equal width grid">
+                {{#with order}}
+                    <div class="column">
+                        <div class="ui centered grid">
+                            <div class="column">
+                                <h2 class="ui icon header">
+                                    <i class="browser icon"></i>
+                                    <div class="content">
+                                        Dane zamawiającego
+                                    </div>
+                                </h2><br>
+                                {{#if verified}}
+                                    <div class="ui green large label">
+                                        <i class="check icon"></i>Dane potwierdzone
+                                    </div>
+                                {{else}}
+                                    <div class="ui grey large label">
+                                        <i class="remove icon"></i>Dane niepotwierdzone
+                                    </div>
+                                {{/if}}
+                                <h3 class="ui horizontal divider header">
+                                    <i class="browser icon"></i>
+                                    Nazwa
+                                </h3>
+                                {{#with orderingParty}}
+                                    <div class="ui piled left aligned segment">
+                                        <div class="ui list">
+                                            {{#if name}}
+                                                <div class="item">
+                                                    <div class="content">
+                                                        {{name}}
+                                                    </div>
+                                                </div>
+                                            {{/if}}
+                                            {{#if subname}}
+                                                <div class="item">
+                                                    <div class="content">
+                                                        {{subname}}
+                                                    </div>
+                                                </div>
+                                            {{/if}}
+                                            {{#if representative}}
+                                                <br>
+                                                <div class="item">
+                                                    <i class="user icon"></i>
+                                                    <div class="content">
+                                                        {{representative}}
+                                                    </div>
+                                                </div>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                    <h3 class="ui horizontal divider header">
+                                        <i class="marker icon"></i>
+                                        Adres
+                                    </h3>
+                                    {{#with address}}
+                                        <div class="ui piled left aligned segment">
+                                            {{street}}
+                                            {{#if number}}
+                                                 {{number}}
+                                            {{/if}}
+                                            <br>
+                                            {{postalCode}}, {{city}}<br>
+                                            {{country}}
+                                        </div>
+                                    {{/with}}
+                                    {{#if isContact contact}}
+                                        <h3 class="ui horizontal divider header">
+                                            <i class="at icon"></i>
+                                            Kontakt
+                                        </h3>
+                                        {{#with contact}}
+                                            <div class="ui piled left aligned segment">
+                                                <div class="ui list">
+                                                    {{#if phone}}
+                                                        <div class="item">
+                                                            <i class="phone icon"></i>
+                                                            <div class="content">
+                                                                {{phone}}
+                                                            </div>
+                                                        </div>
+                                                    {{/if}}
+                                                    {{#if fax}}
+                                                        <div class="item">
+                                                            <i class="fax icon"></i>
+                                                            <div class="content">
+                                                                {{fax}}
+                                                            </div>
+                                                        </div>
+                                                    {{/if}}
+                                                    {{#if email}}
+                                                        <div class="item">
+                                                            <i class="at icon"></i>
+                                                            <div class="content">
+                                                                {{email}} <i class="copy icon link copyEmail" data-content="Kopiuj" data-position="right center"></i>
+                                                            </div>
+                                                        </div>
+                                                    {{/if}}
+                                                    {{#if website}}
+                                                        <div class="item">
+                                                            <i class="world icon"></i>
+                                                            <div class="content">
+                                                                {{{linkify website}}}
+                                                            </div>
+                                                        </div>
+                                                    {{/if}}
+                                                </div>
+                                            </div>
+                                        {{/with}}
+                                    {{/if}}
+                                {{/with}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui centered grid">
+                            <div class="column">
+                                <h2 class="ui icon header">
+                                    <i class="shopping basket icon"></i>
+                                    <div class="content">
+                                        Zamówienie
+                                    </div>
+                                </h2><br>
+                                <div class="ui large label">
+                                    <i class="wait icon"></i>Złożono {{formatDateTime createdAt}}
+                                </div>
+                                <h3 class="ui horizontal divider header">
+                                    <i class="list icon"></i>
+                                    Lista nasion
+                                </h3>
+                                <div class="ui piled segment">
+                                    <table class="ui striped selectable table">
+                                        <tbody>
+                                            {{#each order.order}}
+                                                <tr>
+                                                    <td class="orderSeed" id="{{this}}">
+                                                        {{#with indexSeminum this}}
+                                                            {{#with plant}}
+                                                                <a class="link-details" href="{{plantURL id}}">
+                                                                    {{#with name}}
+                                                                        {{genus}}
+                                                                        {{#if hybrid}}
+                                                                            &times;
+                                                                        {{/if}}
+                                                                        {{#if species}}
+                                                                            <i>{{species}}</i>
+                                                                        {{/if}}
+                                                                        {{#if variety}}
+                                                                            var. {{variety}}
+                                                                        {{/if}}
+                                                                        {{#if subspecies}}
+                                                                            subsp. {{subspecies}}
+                                                                        {{/if}}
+                                                                        {{#if authorship}}
+                                                                            {{authorship}}
+                                                                        {{/if}}
+                                                                        {{#if cultivar}}
+                                                                            '{{cultivar}}'
+                                                                        {{/if}}
+                                                                    {{/with}}
+                                                                </a>
+                                                            {{/with}}
+                                                        {{/with}}
+                                                    </td>
+                                                </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui centered grid">
+                            <div class="column">
+                                <h2 class="ui icon header">
+                                    <i class="cubes icon"></i>
+                                    <div class="content">
+                                        Status zamówienia
+                                    </div>
+                                </h2><br>
+                                {{#if editedAt}}
+                                    <div class="ui large label">
+                                        <i class="history icon"></i>Status edytowano {{formatDateTime editedAt}}
+                                    </div>
+                                {{else}}
+                                    <div class="ui large label">
+                                        <i class="history icon"></i>Status nie został edytowany
+                                    </div>
+                                {{/if}}
+                                <h3 class="ui horizontal divider header">
+                                    <i class="checkmark box icon"></i>
+                                    Status
+                                </h3>
+                                <div class="ui vertical steps">
+                                    <div class="completed step">
+                                        <i class="settings icon"></i>
+                                        <div class="content">
+                                            <div class="title">
+                                                Przetwarzanie
+                                            </div>
+                                            <div class="description">
+                                                Zamówienie zostało przesłane do systemu
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="{{state 'preparing' orderStatus}} step" id="preparingButton">
+                                        <i class="gift icon"></i>
+                                        <div class="content">
+                                            <div class="title">
+                                                Przygotowywanie do wysyłki
+                                            </div>
+                                            <div class="description">
+                                                Zamówienie jest przygotowywane do wysłania
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="{{state 'sent' orderStatus}} step" id="sentButton">
+                                        <i class="truck icon"></i>
+                                        <div class="content">
+                                            <div class="title">
+                                                Wysłano
+                                            </div>
+                                            <div class="description">
+                                                Zamówienie zostało wysłane
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/with}}
+                {{>modalCancel}}
+                {{>modalPrint}}
+            </div>
+        {{else}}
+            {{>errorMessage}}
+        {{/if}}
+    {{/if}}
+</template>
+
+<template name="modalCancel">
+    <div class="ui basic modal" id="modalCancel">
+        <div class="ui icon header">
+            <i class="trash icon"></i>
+            Anuluj zamówienie
+        </div>
+        <div class="content">
+            Czy na pewno chcesz anulować to zamówienie?
+        </div>
+        <div class="actions">
+            <div class="ui negative button">
+                Nie
+            </div>
+            <div class="ui positive button">
+                Tak
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="modalPrint">
+    <div class="ui large modal" id="modalPrint">
+        <div class="header">
+            Podgląd zamówienia do wydruku
+        </div>
+        <div class="content">
+            <iframe id="pdfFrame" name="pdfFrame" src="" height="800px" width="100%"></iframe>
+        </div>
+    </div>
+</template>

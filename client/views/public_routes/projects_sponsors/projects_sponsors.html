@@ -1,0 +1,71 @@
+<template name="projectsSponsors">
+    <div class="ui centered grid">
+        <div class="twelve wide column">
+            <!-- Page title -->
+            <div class="row">
+                <div class="column">
+                    <div class="ui horizontal divider">
+                        <div class="indexSeminum-text">
+                            {{text.projectsSponsors.header}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page informations -->
+            <div class="ui grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="general-text">
+                            <b>{{text.projectsSponsors.projects}}:</b>
+                            <div class="ui accordion">
+                                <div class="title">
+                                    <i class="dropdown icon"></i>
+                                    {{{text.projectsSponsors.project3Title}}}
+                                </div>
+                                <div class="content">
+                                    {{{text.projectsSponsors.project3Content}}}
+                                    <img class="ui centered image" src="images/wydma_panorama.jpg">
+                                </div>
+                                <div class="title">
+                                    <i class="dropdown icon"></i>
+                                    {{{text.projectsSponsors.project2Title}}}
+                                </div>
+                                <div class="content">
+                                    {{{text.projectsSponsors.project2Content}}}
+                                    <img class="ui centered image" src="images/sciezki3.jpg">
+                                </div>
+                                <div class="title">
+                                    <i class="dropdown icon"></i>
+                                    {{{text.projectsSponsors.project1Title}}}
+                                </div>
+                                <div class="content">
+                                    {{{text.projectsSponsors.project1Content}}}
+                                    <img class="ui centered image" src="images/tablica.jpg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <div class="ui horizontal divider">
+                        <div class="indexSeminum-text">
+                            {{text.projectsSponsors.header2}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui centered grid">
+                <div class="four wide column">
+                    <a href="https://wfos.gdansk.pl/">
+                        <img class="ui centered image" src="images/wfos.jpg" max-width="100%" max-height="100%">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

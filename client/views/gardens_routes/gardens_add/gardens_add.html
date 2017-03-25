@@ -1,0 +1,151 @@
+<template name="gardensAdd">
+    {{>breadcrumb sections='3' mainSection='gardens' currentSection='add'}}
+    <div class="ui grid">
+        <div class="row">
+            <div class="column">
+                <div id="submit" class="ui animated fade positive button right floated">
+                    <div class="visible content">
+                        Dodaj
+                    </div>
+                    <div class="hidden content">
+                        <i class="plus icon"></i>
+                    </div>
+                </div>
+                <a href="{{previousPage}}" class="ui animated negative button right floated">
+                    <div class="visible content">
+                        Anuluj
+                    </div>
+                    <div class="hidden content">
+                        <i class="arrow left icon"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <form class="ui form">
+                    <h3 class="ui horizontal divider header">
+                        <i class="browser icon"></i>
+                        NAZWA
+                    </h3>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="browser icon"></i>
+                                Nazwa ogrodu
+                            </div>
+                            <input type="text" name="name" placeholder="Ogród Roślin Leczniczych GUMed" id="name">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="browser icon"></i>
+                                Dodatkowa nazwa ogrodu
+                            </div>
+                            <input type="text" name="subname" placeholder="Gdański Uniwersytet Medyczny, Katedra i Zakład Farmakognozji z Ogrodem Roślin Leczniczych" id="subname">
+                        </div>
+                    </div>
+                    <h3 class="ui horizontal divider header">
+                        <i class="marker icon"></i>
+                        ADRES
+                    </h3>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="road icon"></i>
+                                Ulica
+                            </div>
+                            <input type="text" name="street" placeholder="AL. Gen. J. Hallera" id="street">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="building icon"></i>
+                                Numer budynku
+                            </div>
+                            <input type="text" name="number" placeholder="107" id="number">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="mail icon"></i>
+                                Kod pocztowy
+                            </div>
+                            <input type="text" name="postalCode" placeholder="80-416" id="postalCode">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="industry icon"></i>
+                                Miasto
+                            </div>
+                            <input type="text" name="city" placeholder="Gdańsk" id="city">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="world icon"></i>
+                                Kraj
+                            </div>
+                            <input type="text" name="country" placeholder="Polska" id="country">
+                        </div>
+                    </div>
+                    <h3 class="ui horizontal divider header">
+                        <i class="at icon"></i>
+                        KONTAKT
+                    </h3>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="call icon"></i>
+                                Telefon
+                            </div>
+                            <input type="text" name="phone" placeholder="555 666 777" id="phone">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="fax icon"></i>
+                                Fax
+                            </div>
+                            <input type="text" name="fax" placeholder="555 666 777" id="fax">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="at icon"></i>
+                                Adres e-mail
+                            </div>
+                            <input type="text" name="email" placeholder="orl@gumed.edu.pl" id="email">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="browser icon"></i>
+                                Strona WWW
+                            </div>
+                            <input type="text" name="website" placeholder="www.orl.gumed.edu.pl" id="website">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="user icon"></i>
+                                Przedstawiciel
+                            </div>
+                            <input type="text" name="representative" placeholder="dr Jan Nowak" id="representative">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>

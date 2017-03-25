@@ -1,0 +1,77 @@
+<template name="footer">
+    <div class="footer">
+        <div class="ui divided equal width grid">
+            <div class="row">
+                <div class="column">
+                    <div class="ui equal width grid">
+                        <div class="column">
+                            <div class="ui list">
+                                <div class="item">
+                                    <a href="{{path 'main'}}" class="item link-animation" id="main-page">{{text.footer.mainPage}}</a>
+                                </div>
+                                <div class="item">
+                                    <a href="{{path 'informations'}}" class="item link-animation" id="informations">{{text.footer.informations}}</a>
+                                </div>
+                                <div class="item">
+                                    <a href="{{path 'activity'}}" class="item link-animation" id="activity">{{text.footer.activity}}</a>
+                                </div>
+                                <div class="item">
+                                    <a href="{{path 'history'}}" class="item link-animation" id="history">{{text.footer.history}}</a>
+                                </div>
+                                <div class="item">
+                                    <a href="{{path 'visit'}}" class="item link-animation" id="visit">{{text.footer.visit}}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="ui list">
+                                <div class="item">
+                                    <a href="{{path 'gallery'}}" class="item link-animation" id="gallery">{{text.footer.gallery}}</a>
+                                </div>
+                                <div class="item">
+                                    <a href="{{path 'indexSeminum'}}" class="item link-animation" id="index-seminum">{{text.footer.indexSeminum}}</a>
+                                </div>
+                                <div class="item">
+                                    <a href="{{path 'indexPlantarum'}}" class="item link-animation" id="index-plantarum">{{text.footer.indexPlantarum}}</a>
+                                </div>
+                                <div class="item">
+                                    <a href="{{path 'projectsSponsors'}}" class="item link-animation" id="projects-sponsors">{{text.footer.projectsSponsors}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="one wide column">
+                    <div class="ui vertical divider">
+                        <img src="images/symbol.png" id="symbol">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui grid">
+                        <div class="one wide column">
+                            <i class="marker icon"></i>
+                            <br><br><br><br><br>
+                            <i class="phone icon"></i>
+                            <br>
+                            <i class="at icon"></i>
+                        </div>
+                        <div class="fifteen wide column">
+                            Gdański Uniwersytet Medyczny<br>
+                            Katedra i Zakład Farmakognozji z Ogrodem Roślin Leczniczych<br>
+                            Al. Gen. J. Hallera 107<br>
+                            80-416, Gdańsk<br><br>
+                            058 349 15 58<br>
+                            {{email}}<br><br>
+                        </div>
+                    </div>
+                    <a href="http://www.informator.gumed.edu.pl/119" class="link-animation">Katedra i Zakład Farmakognozji AMG</a>
+                </div>
+            </div>
+            <div class="centered row">
+                <div class="column">
+                    &copy; {{year}} - KWRK
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

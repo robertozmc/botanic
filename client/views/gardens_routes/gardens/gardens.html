@@ -1,0 +1,146 @@
+<template name="gardens">
+    <div class="ui horizontally padded divided grid">
+        <div class="two wide column">
+            <div class="ui form">
+                <div class="field">
+                    <div class="ui icon fluid input">
+                        <input type="text" placeholder="Szukaj..." id="search">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="dateFrom">Data dodania:</label>
+                    <div class="ui left icon fluid action input calendar" name="dateFrom" id="dateFromCalendar">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Od" id="dateFrom">
+                        <button class="ui icon button" id="clearDateFrom"><i class="remove icon"></i></button>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon fluid action input calendar" name="dateTo" id="dateToCalendar">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Do" id="dateTo">
+                        <button class="ui icon button" id="clearDateTo"><i class="remove icon"></i></button>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="recordsPerPage">Ilość wyników na stronę:</label>
+                    <div class="ui fluid buttons" name="recordsPerPage">
+                        <button class="ui button recordsPerPage" id="10recordsPerPage" value="10">10</button>
+                        <button class="ui button recordsPerPage" id="25recordsPerPage" value="25">25</button>
+                        <button class="ui button recordsPerPage" id="50recordsPerPage" value="50">50</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fourteen wide column">
+            {{>breadcrumb sections='2' mainSection='gardens'}}
+            {{>basicControlPanel add=true report=true}}
+            {{>pagination page='gardens'}}
+            {{#if Template.subscriptionsReady}}
+                <div class="ui grid">
+                    <div class="column">
+                        <table class="ui striped selectable table">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-sort="name">
+                                        Nazwa
+                                        {{{sort 'name'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="address">
+                                        Adres
+                                        {{{sort 'address'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="phoneFax">
+                                        Telefon / Fax
+                                        {{{sort 'phoneFax'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="emailWebsite">
+                                        Adres e-mail / Strona WWW
+                                        {{{sort 'emailWebsite'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="representative">
+                                        Przedstawiciel
+                                        {{{sort 'representative'}}}
+                                    </th>
+                                    <th>
+                                        &nbsp;
+                                    </th>
+                                    <th>
+                                        &nbsp;
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each gardens}}
+                                    <tr class="record animated fadeInUp" id="{{_id}}">
+                                        <td>
+                                            {{name}}
+                                        </td>
+                                        {{#with address}}
+                                            <td>
+                                                {{#if street}}
+                                                    <div>
+                                                        ul. {{street}}
+                                                        {{#if number}}
+                                                             {{number}},
+                                                        {{/if}}
+                                                    </div>
+                                                {{/if}}
+                                                <div>
+                                                    {{#if city}}
+                                                        {{city}},
+                                                    {{/if}}
+                                                    {{country}}
+                                                </div>
+                                            </td>
+                                        {{/with}}
+                                        {{#with contact}}
+                                            <td>
+                                                {{#if phone}}
+                                                    <div>
+                                                        <i class="phone icon"></i> {{phone}}
+                                                    </div>
+                                                {{/if}}
+                                                {{#if fax}}
+                                                    <div>
+                                                        <i class="fax icon"></i> {{fax}}
+                                                    </div>
+                                                {{/if}}
+                                            </td>
+                                            <td>
+                                                {{#if email}}
+                                                    <div>
+                                                        <i class="copy icon link copyEmail" data-content="Kopiuj" data-position="left center"></i> {{email}}
+                                                    </div>
+                                                {{/if}}
+                                                {{#if website}}
+                                                    <div>
+                                                        {{{linkify website}}}
+                                                    </div>
+                                                {{/if}}
+                                            </td>
+                                        {{/with}}
+                                        <td>
+                                            {{representative}}
+                                        </td>
+                                        <td>
+                                            <i class="icon write link editButton" data-content="Edytuj" data-position="left center"></i>
+                                        </td>
+                                        <td>
+                                            <i class="icon trash link deleteButton" data-content="Usuń" data-position="right center"></i>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {{else}}
+                {{>loading}}
+            {{/if}}
+            {{>modalDelete}}
+            {{>modalReportPrint}}
+        </div>
+    </div>
+</template>

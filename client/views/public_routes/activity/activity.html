@@ -1,0 +1,74 @@
+<template name="activity">
+    <div class="twelve wide column">
+        <div class="ui centered grid">
+            <div class="row">
+                <div class="twelve wide column">
+                    <div class="ui horizontal divider">
+                        <div class="indexSeminum-text">
+                            {{text.activity.header}}
+                        </div>
+                    </div>
+                    <div class="general-text">
+                        {{{text.activity.content}}}
+
+                        <div class="ui accordion">
+                            <div class="title" id="title">
+                                <i class="dropdown icon"></i>
+                                {{text.activity.scientificActivity}}
+                            </div>
+                            <div class="content">
+                                {{{text.activity.scientificActivityContent}}}
+                            </div>
+                            <div class="title" id="title">
+                                <i class="dropdown icon"></i>
+                                {{text.activity.didacticActivity}}
+                            </div>
+                            <div class="content">
+                                {{{text.activity.didacticActivityContent}}}
+                            </div>
+                            <div class="title" id="title">
+                                <i class="dropdown icon"></i>
+                                {{text.activity.popularizationActivity}}
+                            </div>
+                            <div class="content">
+                                {{{text.activity.popularizationActivityContent}}}
+                            </div>
+                            <div class="title" id="title">
+                                <i class="dropdown icon"></i>
+                                {{text.activity.publicationsPosters}}
+                            </div>
+                            <div class="content">
+                                <div class="ui centered grid">
+                                    <div class="row">
+                                        <div class="column">
+                                            <div class="ui horizontal divider">
+                                                <div class="indexSeminum-text">
+                                                    {{text.activity.publicationsHeader}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{{text.activity.publicationsContent}}}
+                                <div class="ui centered grid">
+                                    <div class="row">
+                                        <div class="column">
+                                            <div class="ui horizontal divider">
+                                                <div class="indexSeminum-text">
+                                                    {{text.activity.postersHeader}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{{text.activity.postersContent}}}
+                                <br><br>
+                                {{text.activity.postersDisclaimer}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

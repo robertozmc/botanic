@@ -1,0 +1,490 @@
+<template name="plantsEdit">
+    {{>breadcrumb sections='3' mainSection='plants' currentSection='edit'}}
+    <div class="ui grid">
+        <div class="row">
+            <div class="column">
+                <div id="submit" class="ui animated fade positive button right floated">
+                    <div class="visible content">
+                        Edytuj
+                    </div>
+                    <div class="hidden content">
+                        <i class="write icon"></i>
+                    </div>
+                </div>
+                <a href="{{previousPage}}" class="ui animated negative button right floated">
+                    <div class="visible content">
+                        Anuluj
+                    </div>
+                    <div class="hidden content">
+                        <i class="arrow left icon"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <form class="ui form">
+                    <h3 class="ui horizontal divider header">
+                        <i class="browser icon"></i>
+                        INFORMACJE OGÓLNE
+                    </h3>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="hashtag icon"></i>
+                                Numer katalogowy
+                            </div>
+                            <input type="text" name="catalogNumber" placeholder="1234" id="catalogNumber">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="browser icon"></i>
+                                Rodzaj
+                            </div>
+                            <input type="text" name="genus" placeholder="Taraxacum" id="genus">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="browser icon"></i>
+                                Gatunek
+                            </div>
+                            <input type="text" name="species" placeholder="officinale" id="species">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="browser icon"></i>
+                                Odmiana
+                            </div>
+                            <input type="text" name="variety" placeholder="Odmiana" id="variety">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="browser icon"></i>
+                                Podgatunek
+                            </div>
+                            <input type="text" name="subspecies" placeholder="Podgatunek" id="subspecies">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="browser icon"></i>
+                                Kultywar
+                            </div>
+                            <input type="text" name="cultivar" placeholder="Kultywar" id="cultivar">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="user icon"></i>
+                                Autor/Autorzy
+                            </div>
+                            <input type="text" name="authorship" placeholder="L." id="authorship">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <button type="button" class="ui toggle button" id="hybrid">
+                            <i class="random icon"></i>
+                            Hybryda
+                        </button>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="browser icon"></i>
+                                Nazwa polska
+                            </div>
+                            <input type="text" name="namePL" placeholder="Mniszek pospolity" id="namePL">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="browser icon"></i>
+                                Gromada
+                            </div>
+                            <div class="ui selection fluid dropdown" id="division-dropdown">
+                                <input name="division" type="hidden">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Charakter</div>
+                                <div class="menu">
+                                    <div class="item" data-value="angiosperm">Okrytonasienne</div>
+                                    <div class="item" data-value="gymnosperm">Nagonasienne</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="browser icon"></i>
+                                Klad
+                            </div>
+                            <div class="ui selection fluid dropdown" id="clade-dropdown">
+                                <input name="clade" type="hidden">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Charakter</div>
+                                <div class="menu">
+                                    <div class="item" data-value="monocotyledon">Jednoliścienne</div>
+                                    <div class="item" data-value="dicotyledon">Dwuliścienne</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="browser icon"></i>
+                                Rząd
+                            </div>
+                            <div class="ui search selection fluid dropdown" id="order-dropdown">
+                                <input type="hidden" name="order" id="order">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Rząd</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="browser icon"></i>
+                                Rodzina
+                            </div>
+                            <div class="ui search selection fluid dropdown" id="family-dropdown">
+                                <input type="hidden" name="family" id="family">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Rodzina</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="tree icon"></i>
+                                Charakter
+                            </div>
+                            <div class="ui selection fluid dropdown" id='type-dropdown'>
+                                <input name="type" type="hidden">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Charakter</div>
+                                <div class="menu">
+                                    <div class="item" data-value="tree">Drzewo</div>
+                                    <div class="item" data-value="shrub">Krzew</div>
+                                    <div class="item" data-value="littleShrub">Krzewinka</div>
+                                    <div class="item" data-value="annualVine">Pnącze jednoroczne</div>
+                                    <div class="item" data-value="perennialVine">Pnącze wieloletnie</div>
+                                    <div class="item" data-value="perennial">Bylina</div>
+                                    <div class="item" data-value="annual">Roślina jednoroczna</div>
+                                    <div class="item" data-value="biennial">Roślina dwuletnia</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="world icon"></i>
+                                Występowanie
+                            </div>
+                            <div class="ui multiple selection fluid dropdown" id="continent-dropdown">
+                                <input name="continent" type="hidden">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Występowanie</div>
+                                <div class="menu">
+                                    <div class="item" data-value="africa">Afryka</div>
+                                    <div class="item" data-value="northAfrica">Afryka - Północ</div>
+                                    <div class="item" data-value="southAfrica">Afryka - Południe</div>
+                                    <div class="item" data-value="eastAfrica">Afryka - Wschód</div>
+                                    <div class="item" data-value="westAfrica">Afryka - Zachód</div>
+                                    <div class="item" data-value="centralAfrica">Afryka - Centralna</div>
+                                    <div class="item" data-value="asia">Azja</div>
+                                    <div class="item" data-value="northAsia">Azja - Północ</div>
+                                    <div class="item" data-value="southAsia">Azja - Południe</div>
+                                    <div class="item" data-value="eastAsia">Azja - Wschód</div>
+                                    <div class="item" data-value="westAsia">Azja - Zachód</div>
+                                    <div class="item" data-value="centralAsia">Azja - Centralna</div>
+                                    <div class="item" data-value="australia">Australia</div>
+                                    <div class="item" data-value="northAustralia">Australia - Północ</div>
+                                    <div class="item" data-value="southAustralia">Australia - Południe</div>
+                                    <div class="item" data-value="eastAustralia">Australia - Wschód</div>
+                                    <div class="item" data-value="westAustralia">Australia - Zachód</div>
+                                    <div class="item" data-value="centralAustralia">Australia - Centralna</div>
+                                    <div class="item" data-value="northAmerica">Ameryka Północna</div>
+                                    <div class="item" data-value="northNorthAmerica">Ameryka Północna - Północ</div>
+                                    <div class="item" data-value="southNorthAmerica">Ameryka Północna - Południe</div>
+                                    <div class="item" data-value="eastNorthAmerica">Ameryka Północna - Wschód</div>
+                                    <div class="item" data-value="westNorthAmerica">Ameryka Północna - Zachód</div>
+                                    <div class="item" data-value="centralNorthAmerica">Ameryka Północna - Centralna</div>
+                                    <div class="item" data-value="southAmerica">Ameryka Południowa</div>
+                                    <div class="item" data-value="northSouthAmerica">Ameryka Południowa - Północ</div>
+                                    <div class="item" data-value="southSouthAmerica">Ameryka Południowa - Południe</div>
+                                    <div class="item" data-value="eastSouthAmerica">Ameryka Południowa - Wschód</div>
+                                    <div class="item" data-value="westSouthAmerica">Ameryka Południowa - Zachód</div>
+                                    <div class="item" data-value="centralSouthAmerica">Ameryka Południowa - Centralna</div>
+                                    <div class="item" data-value="europe">Europa</div>
+                                    <div class="item" data-value="northEurope">Europa - Północ</div>
+                                    <div class="item" data-value="southEurope">Europa - Południe</div>
+                                    <div class="item" data-value="eastEurope">Europa - Wschód</div>
+                                    <div class="item" data-value="westEurope">Europa - Zachód</div>
+                                    <div class="item" data-value="centralEurope">Europa - Centralna</div>
+                                    <div class="item" data-value="atlanticOcean">Ocean Atlantycki</div>
+                                    <div class="item" data-value="indianOcean">Ocean Indyjski</div>
+                                    <div class="item" data-value="pacificOcean">Ocean Spokojny</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="browser icon"></i>
+                                Występowanie - Opis
+                            </div>
+                            <input type="text" name="description" placeholder="Opis, np. Góry Uralu" id="description">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="marker icon"></i>
+                                Siedlisko
+                            </div>
+                            <input type="text" name="habitat" placeholder="Mokradła" id="habitat">
+                        </div>
+                    </div>
+                    <h3 class="ui horizontal divider header">
+                        <i class="browser icon"></i>
+                        INFORMACJE SZCZEGÓŁOWE
+                    </h3>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="protect icon"></i>
+                                Typ ochrony
+                            </div>
+                            <div class="ui selection fluid dropdown" id="typeOfProtection-dropdown">
+                                <input name="typeOfProtection" type="hidden">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Typ ochrony</div>
+                                <div class="menu">
+                                    <div class="item" data-value="fullProtection">Ochrona ścisła</div>
+                                    <div class="item" data-value="partialProtection">Ochrona częściowa</div>
+                                    <div class="item" data-value="noProtection">Brak ochrony</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <button type="button" class="ui toggle button" id="endangered">
+                            <i class="warning sign icon"></i>
+                            Zagrożenie wymarciem
+                        </button>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="leaf icon"></i>
+                                Surowiec
+                            </div>
+                            <input type="text" name="rawMaterial" placeholder="Liście" id="rawMaterial">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="cube icon"></i>
+                                Zdolność nasiewania
+                            </div>
+                            <input type="text" name="abilityToSow" placeholder="3" id="abilityToSow">
+                            <div class="ui grey range" id="abilityToSowRange"></div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="cube icon"></i>
+                                Zdolność rozmnażania
+                            </div>
+                            <input type="text" name="abilityToPropagate" placeholder="3" id="abilityToPropagate">
+                            <div class="ui grey range" id="abilityToPropagateRange"></div>
+                        </div>
+                    </div>
+                    <h3 class="ui horizontal divider header">
+                        <i class="tree icon"></i>
+                        INFORMACJE O OGRODZIE
+                    </h3>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="map signs icon"></i>
+                                Miejsce w ogrodzie
+                            </div>
+                            <div class="ui multiple selection fluid dropdown" id="place-dropdown">
+                                <input name="place" type="hidden">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Miejsce w ogrodzie</div>
+                                <div class="menu">
+                                    <div class="item" data-value="decorativeDepartment">Dział Roślin Ozdobnych</div>
+                                    <div class="item" data-value="arboretum">Arboretum</div>
+                                    <div class="item" data-value="moor">Wrzosowisko</div>
+                                    <div class="item" data-value="dune">Wydma</div>
+                                    <div class="item" data-value="pharmacognosy">Farmakognozja</div>
+                                    <div class="item" data-value="systematics">Dział Systematyki Roślin</div>
+                                    <div class="item" data-value="medicinalPlantsSector">Dział Roślin Leczniczych</div>
+                                    <div class="item" data-value="greenhouse">Szklarnia</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="cubes icon"></i>
+                                Ilość
+                            </div>
+                            <input type="text" name="quantity" placeholder="10" id="quantity">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="leaf icon"></i>
+                                Rodzaj sprowadzenia
+                            </div>
+                            <div class="ui selection fluid dropdown" id="importType-dropdown">
+                                <input name="importType" type="hidden">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Rodzaj sprowadzenia</div>
+                                <div class="menu">
+                                    <div class="item" data-value="seeds">Nasiona</div>
+                                    <div class="item" data-value="seedling">Sadzonka</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input calendar">
+                            <div class="ui label">
+                                <i class="calendar checked icon"></i>
+                                Rok sprowadzenia
+                            </div>
+                            <input type="text" name="importYear" placeholder="2008" id="importYear">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="world icon"></i>
+                                Skąd sprowadzono
+                            </div>
+                            <div class="ui search selection fluid dropdown" id="gardens-dropdown">
+                                <input type="hidden" name="importGarden" id="importGarden">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Ogród botaniczny</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <button type="button" class="ui toggle button" id="researchAtPharmacy">
+                            <i class="lab icon"></i>
+                            Badano na farmacji
+                        </button>
+                    </div>
+                    <div class="field">
+                        <button type="button" class="ui toggle button" id="herbarium">
+                            <i class="leaf icon"></i>
+                            Zielnik
+                        </button>
+                    </div>
+                    <div class="field">
+                        <button type="button" class="ui toggle button" id="confirmed">
+                            <i class="checkmark icon"></i>
+                            Potwierdzenie botanika
+                        </button>
+                    </div>
+                    <h3 class="ui horizontal divider header">
+                        <i class="book icon"></i>
+                        CHARAKTERYSTYKA
+                    </h3>
+                    <div class="field">
+                        <button type="button" class="ui toggle button" id="pharmacopoeial">
+                            <i class="first aid icon"></i>
+                            Farmakopealna
+                        </button>
+                    </div>
+                    <div class="field">
+                        <button type="button" class="ui toggle button" id="medicinal">
+                            <i class="treatment icon"></i>
+                            Lecznicza
+                        </button>
+                    </div>
+                    <div class="field">
+                        <button type="button" class="ui toggle button" id="poisonous">
+                            <i class="ban icon"></i>
+                            Trująca
+                        </button>
+                    </div>
+                    <div class="field">
+                        <button type="button" class="ui toggle button" id="edible">
+                            <i class="food icon"></i>
+                            Jadalna
+                        </button>
+                    </div>
+                    <div class="field">
+                        <button type="button" class="ui toggle button" id="spice">
+                            <i class="pagelines icon"></i>
+                            Przyprawowa
+                        </button>
+                    </div>
+                    <div class="field">
+                        <button type="button" class="ui toggle button" id="appropriable">
+                            <i class="idea icon"></i>
+                            Użytkowa
+                        </button>
+                    </div>
+                    <div class="field">
+                        <button type="button" class="ui toggle button" id="ornamental">
+                            <i class="diamond icon"></i>
+                            Ozdobna
+                        </button>
+                    </div>
+                    <div class="field">
+                        <button type="button" class="ui toggle button" id="bulb">
+                            <i class="lemon icon"></i>
+                            Cebulowa
+                        </button>
+                    </div>
+                    <div class="field">
+                        <button type="button" class="ui toggle button" id="evergreen">
+                            <i class="tree icon"></i>
+                            Zimozielona
+                        </button>
+                    </div>
+                    <h3 class="ui horizontal divider header">
+                        <i class="sticky note icon"></i>
+                        NOTATKI
+                    </h3>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="sticky note icon"></i>
+                                Notatka
+                            </div>
+                            <textarea rows="2" name="note" placeholder="..." id="note"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{>plantsAddModal}}
+</template>

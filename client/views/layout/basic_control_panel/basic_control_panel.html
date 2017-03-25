@@ -1,0 +1,26 @@
+<template name="basicControlPanel">
+    <div class="ui grid">
+        <div class="column">
+            {{#if add}}
+                <a href="{{addPath}}" class="ui animated fade positive button">
+                    <div class="visible content">
+                        Dodaj
+                    </div>
+                    <div class="hidden content">
+                        <i class="plus icon"></i>
+                    </div>
+                </a>
+            {{/if}}
+            {{#if report}}
+                <div class="ui animated vertical primary button" id="reportButton">
+                    <div class="visible content">
+                        Raport
+                    </div>
+                    <div class="hidden content">
+                        <i class="file text icon"></i>
+                    </div>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</template>

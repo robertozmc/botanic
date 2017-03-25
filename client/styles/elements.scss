@@ -1,0 +1,75 @@
+@import 'general.scss';
+
+blockquote {
+	margin: 1em 3em;
+	color: #999;
+	border-left: 2px solid #999;
+	padding-left: 1em;
+}
+
+.link-animation {
+    position: relative;
+
+    &:before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        left: 50%;
+        right: 50%;
+        bottom: -1px;
+        background: $main-color;
+        height: 1px;
+
+        -webkit-transition-property: left, right;
+        transition-property: left, right;
+        -webkit-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+    }
+}
+
+.link-animation:hover:before {
+    left: 0;
+    right: 0;
+}
+
+#spinner {
+    padding-top: 200%;
+}
+
+.step {
+	.content {
+		.title {
+			text-align: left;
+		}
+	}
+}
+
+.quantityInput {
+	width: 47% !important;
+}
+
+.link-details {
+	color: $main-color;
+	&:hover {
+		color: darken($main-color, 20%);
+	}
+}
+
+.link-main {
+	color: $main-color;
+	&:hover {
+		color: $main-color;
+	}
+}
+
+.news-image {
+	max-width:100%;
+	max-height:100%;
+}
+
+.general-text {
+	font-size: 1.2em;
+	text-align: justify;
+}

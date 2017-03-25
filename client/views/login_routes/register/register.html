@@ -1,0 +1,63 @@
+<template name="register">
+    <i class="huge home icon" id="home" data-content="Powrót do strony głównej" data-position="right center"></i>
+    <div class="ui center aligned grid">
+        <form class="ui register form segment">
+            <h2>Rejestracja</h2>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">
+                        <i class="user icon"></i>
+                        Login
+                    </div>
+                    <input type="text" name="login" placeholder="login" id="login">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">
+                        <i class="user icon"></i>
+                        Imię i nazwisko
+                    </div>
+                    <input type="text" name="name" placeholder="imię i nazwisko" id="name">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">
+                        <i class="at icon"></i>
+                        Adres e-mail
+                    </div>
+                    <input type="email" name="email" placeholder="adres e-mail" id="email">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">
+                        <i class="lock icon"></i>
+                        Hasło
+                    </div>
+                    <input type="password" name="password" placeholder="hasło" id="password">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">
+                        <i class="lock icon"></i>
+                        Potwierdź hasło
+                    </div>
+                    <input type="password" name="passwordConfirm" placeholder="potwierdzenie hasła" id="passwordConfirm">
+                </div>
+            </div>
+            <button class="ui primary labeled icon button" type="submit" id="submit">
+                <i class="edit icon"></i>
+                Zarejestruj
+            </button>
+            <p>
+                Masz już konto?
+                <a href="{{path}}">
+                    Zaloguj się
+                </a>
+            </p>
+        </form>
+    </div>
+</template>

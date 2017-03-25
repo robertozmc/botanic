@@ -1,0 +1,17 @@
+{
+    "public": {
+
+    },
+    "private": {
+        "api": {
+            "googleAPI": "AIzaSyCnNTKUM62R9Ds17P39RCElIy3l-g4RT3Q",
+            "googleAPI2": "AIzaSyChFasNV5k5On4KFW8X2X1K574G3yS-v-0"
+        },
+        "papertrail": {
+            "host": "logs4.papertrailapp.com",
+            "port": 36384,
+            "program": "botanic",
+            "level": "silly"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+// Main colors definiton
+$red: #f00;
+$white: #fff;
+
+// Specific elements colors definition
+$main-color: rgb(88, 191, 99);
+$secondary-color: rgb(246, 246, 246);
+$header-color: rgb(37, 49, 61);
+
+$select-color: lighten($main-color, 20%);
+
+::selection {
+    background: $select-color;
+}

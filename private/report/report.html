@@ -1,0 +1,485 @@
+<div class="ui grid">
+    <div class="row">
+        <div class="right floated right aligned column">
+            <h5>Wygenerowano: {{generated}}</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <div class="ui centered grid">
+                <div class="center aligned column">
+                    <h1>Raport</h1>
+                    <h2>{{type}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            {{#if description.search}}
+                Zawierające frazę: "{{description.search}}"<br>
+            {{/if}}
+            {{#if isType 'Zamówienia' type}}
+                {{#if description.orderStatus}}
+                    Status: {{formatOrderStatus description.orderStatus}}<br>
+                {{/if}}
+                {{#unless isNotNull 'null' description.verified}}
+                    Zamawiający zweryfikowani: {{isTrue description.verified}}<br>
+                {{/unless}}
+                {{#if description.createdAt.from}}
+                    Dodane po: {{formatPrettyDate description.createdAt.from}}<br>
+                {{/if}}
+                {{#if description.createdAt.to}}
+                    Dodane przed: {{formatPrettyDate description.createdAt.to}}<br>
+                {{/if}}
+            {{/if}}
+            {{#if isType 'Rośliny' type}}
+                {{#unless isNotNull 'null' description.generalInformations.hybrid}}
+                    Hybrydy: {{isTrue description.generalInformations.hybrid}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.generalInformations.division}}
+                    Gromada: {{formatDivision description.generalInformations.division}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.generalInformations.clade}}
+                    Klad: {{formatClade description.generalInformations.clade}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.generalInformations.type}}
+                    Charakter:
+                    {{#each description.generalInformations.type}}
+                        {{formatType this}};&nbsp;
+                    {{/each}}
+                    <br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.generalInformations.regionOfLiving}}
+                    Występowanie:
+                    {{#each description.generalInformations.regionOfLiving}}
+                        {{formatRegionOfLiving this}};&nbsp;
+                    {{/each}}
+                    <br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.generalInformations.typeOfProtection}}
+                    Typ ochrony:
+                    {{#each description.generalInformations.typeOfProtection}}
+                        {{formatTypeOfProtection this}};&nbsp;
+                    {{/each}}
+                    <br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.generalInformations.endangered}}
+                    Zagrożone wyginięciem: {{isTrue description.generalInformations.endangered}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.generalInformations.abilityToSow.from}}
+                    Zdolność nasiewania od: {{description.generalInformations.abilityToSow.from}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.generalInformations.abilityToSow.to}}
+                    Zdolność nasiewania do: {{description.generalInformations.abilityToSow.to}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.generalInformations.abilityToPropagate.from}}
+                    Zdolność rozmnażania od: {{description.generalInformations.abilityToPropagate.from}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.generalInformations.abilityToPropagate.to}}
+                    Zdolność rozmnażania do: {{description.generalInformations.abilityToPropagate.to}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.gardenInformations.place}}
+                    Miejsce w ogrodzie:
+                    {{#each description.gardenInformations.place}}
+                        {{formatPlace this}};&nbsp;
+                    {{/each}}
+                    <br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.gardenInformations.quantity.from}}
+                    Ilość od: {{description.gardenInformations.quantity.from}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.gardenInformations.quantity.to}}
+                    Ilość do: {{description.gardenInformations.quantity.to}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.gardenInformations.importType}}
+                    Rodzaj sprowadzenia: {{formatImportType description.gardenInformations.importType}}<br>
+                {{/unless}}
+                {{#if description.gardenInformations.importYear.from}}
+                    Sprowadzone po: {{description.gardenInformations.importYear.from}}<br>
+                {{/if}}
+                {{#if description.gardenInformations.importYear.to}}
+                    Sprowadzone przed: {{description.gardenInformations.importYear.to}}<br>
+                {{/if}}
+                {{#unless isNotNull 'null' description.gardenInformations.importGarden}}
+                    Sprowadzone z:
+                    {{#each description.gardenInformations.importGarden}}
+                        {{getGardenName this}};&nbsp;
+                    {{/each}}
+                    <br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.gardenInformations.researchAtPharmacy}}
+                    Badane na farmacji: {{isTrue description.gardenInformations.researchAtPharmacy}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.gardenInformations.herbarium}}
+                    W zielniku: {{isTrue description.gardenInformations.herbarium}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.gardenInformations.confirmed}}
+                    Potwierdzone przez botanika: {{isTrue description.gardenInformations.confirmed}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.characteristic.pharmacopoeial}}
+                    Farmakopealne: {{isTrue description.characteristic.pharmacopoeial}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.characteristic.medicinal}}
+                    Lecznicze: {{isTrue description.characteristic.medicinal}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.characteristic.poisonous}}
+                    Trujące: {{isTrue description.characteristic.poisonous}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.characteristic.edible}}
+                    Jadalne: {{isTrue description.characteristic.edible}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.characteristic.spice}}
+                    Przyprawowe: {{isTrue description.characteristic.spice}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.characteristic.appropriable}}
+                    Użytkowe: {{isTrue description.characteristic.appropriable}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.characteristic.ornamental}}
+                    Ozdobne: {{isTrue description.characteristic.ornamental}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.characteristic.bulb}}
+                    Cebulowe: {{isTrue description.characteristic.bulb}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.characteristic.evergreen}}
+                    Zimozielone: {{isTrue description.characteristic.evergreen}}<br>
+                {{/unless}}
+                {{#if description.createdAt.from}}
+                    Dodane po: {{formatPrettyDate description.createdAt.from}}<br>
+                {{/if}}
+                {{#if description.createdAt.to}}
+                    Dodane przed: {{formatPrettyDate description.createdAt.to}}<br>
+                {{/if}}
+            {{/if}}
+            {{#if isType 'Nasiona' type}}
+                {{#unless isNotNull 'null' description.quantity.from}}
+                    Ilość od: {{description.quantity.from}}<br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.quantity.to}}
+                    Ilość do: {{description.quantity.to}}<br>
+                {{/unless}}
+                {{#if description.unit}}
+                    Jednostka: {{formatUnit description.unit}}<br>
+                {{/if}}
+                {{#if description.usage}}
+                    Przeznaczenie: {{formatUsage description.usage}}<br>
+                {{/if}}
+                {{#if description.harvestDate.from}}
+                    Zebrane po: {{formatPrettyDate description.harvestDate.from}}<br>
+                {{/if}}
+                {{#if description.harvestDate.to}}
+                    Zebrane przed: {{formatPrettyDate description.harvestDate.to}}<br>
+                {{/if}}
+                {{#if description.createdAt.from}}
+                    Dodane po: {{formatPrettyDate description.createdAt.from}}<br>
+                {{/if}}
+                {{#if description.createdAt.to}}
+                    Dodane przed: {{formatPrettyDate description.createdAt.to}}<br>
+                {{/if}}
+            {{/if}}
+            {{#if isType 'Ogrody botaniczne' type}}
+                {{#if description.dateFrom}}
+                    Dodane po: {{formatPrettyDate description.dateFrom}}<br>
+                {{/if}}
+                {{#if description.dateTo}}
+                    Dodane przed: {{formatPrettyDate description.dateTo}}<br>
+                {{/if}}
+            {{/if}}
+            {{#if isType 'News' type}}
+                {{#if description.dateFrom}}
+                    Dodane po: {{formatPrettyDate description.dateFrom}}<br>
+                {{/if}}
+                {{#if description.dateTo}}
+                    Dodane przed: {{formatPrettyDate description.dateTo}}<br>
+                {{/if}}
+            {{/if}}
+            {{#if isType 'Użytkownicy' type}}
+                {{#unless isNotNull 'null' description.roles}}
+                    Uprawnienia:
+                    {{#each description.roles}}
+                        {{formatRoles this}};&nbsp;
+                    {{/each}}
+                    <br>
+                {{/unless}}
+                {{#unless isNotNull 'null' description.verified}}
+                    Status: {{formatStatus description.verified}}<br>
+                {{/unless}}
+                {{#if description.createdAt.from}}
+                    Dodani po: {{formatPrettyDate description.createdAt.from}}<br>
+                {{/if}}
+                {{#if description.createdAt.to}}
+                    Dodani przed: {{formatPrettyDate description.createdAt.to}}<br>
+                {{/if}}
+            {{/if}}
+            Łącznie: {{cursorCount}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <div class="ui centered grid">
+                <div class="column">
+                    <table class="ui striped very compact small table" style="font-size: 0.5em;">
+                        {{#if isType 'Zamówienia' type}}
+                            <thead>
+                                <tr>
+                                    <th>Zamawiający</th>
+                                    <th>Adres</th>
+                                    <th>Adres e-mail</th>
+                                    <th>Data zamówienia</th>
+                                    {{#unless description.orderStatus}}
+                                        <th>Status</th>
+                                    {{/unless}}
+                                    {{#if isNotNull 'null' description.verified}}
+                                        <th>Zamawiający zweryfikowany</th>
+                                    {{/if}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each cursor}}
+                                    <tr>
+                                        {{#with orderingParty}}
+                                            <td>{{name}}</td>
+                                            <td>
+                                                {{#with address}}
+                                                    {{#if street}}
+                                                        ul. {{street}}
+                                                    {{/if}}
+                                                    {{#if number}}
+                                                        {{number}},
+                                                    {{/if}}
+                                                    {{#if postalCode}}
+                                                        {{postalCode}}
+                                                    {{/if}}
+                                                    {{#if city}}
+                                                        {{city}},
+                                                    {{/if}}
+                                                    {{#if country}}
+                                                        {{country}}
+                                                    {{/if}}
+                                                {{/with}}
+                                            </td>
+                                            <td>
+                                                {{contact.email}}
+                                            </td>
+                                        {{/with}}
+                                        <td>{{formatDate createdAt}}</td>
+                                        {{#unless ../description.orderStatus}}
+                                            <td>{{formatOrderStatus orderStatus}}</td>
+                                        {{/unless}}
+                                        {{#if isNotNull 'null' ../description.verified}}
+                                            <td>
+                                                {{#if verified}}
+                                                    <i class="checkmark icon"></i>
+                                                {{else}}
+                                                    &nbsp;
+                                                {{/if}}
+                                            </td>
+                                        {{/if}}
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        {{/if}}
+                        {{#if isType 'Rośliny' type}}
+                            <thead>
+                                <tr>
+                                    <th>Numer katalogowy</th>
+                                    <th>Rząd</th>
+                                    <th>Rodzina</th>
+                                    <th>Nazwa</th>
+                                    <th>Nazwa polska</th>
+                                    <th>Charakter</th>
+                                    <th>Miejsce w ogrodzie</th>
+                                    <th>Ilość</th>
+                                    <th>Data dodania</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each cursor}}
+                                    <tr>
+                                        <td>{{catalogNumber}}</td>
+                                        <td>{{generalInformations.order.name}}</td>
+                                        <td>{{generalInformations.family.name}}</td>
+                                        <td>
+                                            {{#with generalInformations.name}}
+                                                {{genus}}
+                                                {{#if hybrid}}
+                                                    &times;
+                                                {{/if}}
+                                                <i>{{species}}</i>
+                                                {{#if variety}}
+                                                    var. <i>{{variety}}</i>
+                                                {{/if}}
+                                                {{#if subspecies}}
+                                                    subsp. {{subspecies}}
+                                                {{/if}}
+                                                {{authorship}}
+                                                {{#if cultivar}}
+                                                    '{{cultivar}}'
+                                                {{/if}}
+                                            {{/with}}
+                                        </td>
+                                        <td>{{generalInformations.namePL}}</td>
+                                        <td>{{formatType generalInformations.type}}</td>
+                                        <td>
+                                            {{#each gardenInformations.place}}
+                                                <div class="ui label" style="font-size: 1em;">
+                                                    {{formatPlaceShorthand this}}
+                                                </div>
+                                            {{/each}}
+                                        </td>
+                                        <td>{{gardenInformations.quantity}}</td>
+                                        <td>{{formatDate createdAt}}</td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        {{/if}}
+                        {{#if isType 'Nasiona' type}}
+                            <thead>
+                                <tr>
+                                    <th>Roślina</th>
+                                    <th>Ilość</th>
+                                    {{#unless description.unit}}
+                                        <th>Jednostka</th>
+                                    {{/unless}}
+                                    <th>Data zebrania</th>
+                                    {{#unless description.usage}}
+                                        <th>Przeznaczenie</th>
+                                    {{/unless}}
+                                    <th>Notatka</th>
+                                    <th>Data dodania</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each cursor}}
+                                    <tr>
+                                        <td>{{{plant.name}}}</td>
+                                        <td>{{quantity}}</td>
+                                        {{#unless ../description.unit}}
+                                            <td>{{formatUnit unit}}</td>
+                                        {{/unless}}
+                                        <td>{{formatDate date}}</td>
+                                        {{#unless ../description.usage}}
+                                            <td>{{formatUsage usage}}</td>
+                                        {{/unless}}
+                                        <td>{{note}}</td>
+                                        <td>{{formatDate createdAt}}</td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        {{/if}}
+                        {{#if isType 'Ogrody botaniczne' type}}
+                            <thead>
+                                <tr>
+                                    <th>Nazwa</th>
+                                    <th>Adres</th>
+                                    <th>Telefon / Fax</th>
+                                    <th>Adres e-mail / Strona WWW</th>
+                                    <th>Przedstawiciel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each cursor}}
+                                    <tr>
+                                        <td>{{name}}</td>
+                                        <td>
+                                            {{#with address}}
+                                                {{#if street}}
+                                                    ul. {{street}}
+                                                {{/if}}
+                                                {{#if number}}
+                                                    {{number}},
+                                                {{/if}}
+                                                {{#if postalCode}}
+                                                    {{postalCode}}
+                                                {{/if}}
+                                                {{#if city}}
+                                                    {{city}},
+                                                {{/if}}
+                                                {{#if country}}
+                                                    {{country}}
+                                                {{/if}}
+                                            {{/with}}
+                                        </td>
+                                        {{#with contact}}
+                                            <td>
+                                                {{#if phone}}
+                                                    {{phone}}
+                                                {{/if}}
+                                                {{#if fax}}
+                                                    {{fax}}
+                                                {{/if}}
+                                            </td>
+                                            <td>
+                                                {{#if email}}
+                                                    {{email}}
+                                                {{/if}}
+                                                {{#if website}}
+                                                    {{website}}
+                                                {{/if}}
+                                            </td>
+                                        {{/with}}
+                                        <td>{{representative}}</td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        {{/if}}
+                        {{#if isType 'News' type}}
+                            <thead>
+                                <tr>
+                                    <th>Data opublikowania</th>
+                                    <th>Tytuł</th>
+                                    <th>Autor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each cursor}}
+                                    <tr>
+                                        <td>{{formatDateTime createdAt}}</td>
+                                        <td>{{title}}</td>
+                                        <td>{{author.name}}</td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        {{/if}}
+                        {{#if isType 'Użytkownicy' type}}
+                            <thead>
+                                <tr>
+                                    <th>Imię i nazwisko</th>
+                                    <th>Login</th>
+                                    <th>Adres e-mail</th>
+                                    <th>Data utworzenia</th>
+                                    <th>Uprawnienia</th>
+                                    {{#unless description.verified}}
+                                        <th>Status</th>
+                                    {{/unless}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each cursor}}
+                                    <tr>
+                                        <td>{{name}}</td>
+                                        <td>{{username}}</td>
+                                        <td>{{emails.[0].address}}</td>
+                                        <td>{{formatDate createdAt}}</td>
+                                        <td>
+                                            {{#each roles}}
+                                                <div class="ui label" style="font-size: 1em;">
+                                                    {{formatRoles this}}
+                                                </div>
+                                            {{/each}}
+                                        </td>
+                                        {{#unless ../description.verified}}
+                                            <td>
+                                                {{formatStatus emails.[0].verified}}
+                                            </td>
+                                        {{/unless}}
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        {{/if}}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

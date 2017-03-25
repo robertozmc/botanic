@@ -1,0 +1,123 @@
+<template name="seedsAdd">
+    {{>breadcrumb sections='3' mainSection='seeds' currentSection='add'}}
+    <div class="ui grid">
+        <div class="row">
+            <div class="column">
+                <div id="submit" class="ui animated fade positive button right floated">
+                    <div class="visible content">
+                        Dodaj
+                    </div>
+                    <div class="hidden content">
+                        <i class="plus icon"></i>
+                    </div>
+                </div>
+                <a href="{{previousPage}}" class="ui animated negative button right floated">
+                    <div class="visible content">
+                        Anuluj
+                    </div>
+                    <div class="hidden content">
+                        <i class="arrow left icon"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <form class="ui form">
+                    <h3 class="ui horizontal divider header">
+                        <i class="add square icon"></i>
+                        NASIONA
+                    </h3>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="tree icon"></i>
+                                Nazwa rośliny
+                            </div>
+                            <div class="ui search selection fluid dropdown" id="plant-dropdown">
+                                <input type="hidden" name="plant" id="plant">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Wybierz roślinę</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <div class="ui labeled input">
+                                <div class="ui label">
+                                    <i class="cubes icon"></i>
+                                    Ilość
+                                </div>
+                                <input type="text" name="quantity" placeholder="10" id="quantity">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui labeled input">
+                                <div class="ui label">
+                                    <i class="tag icon"></i>
+                                    Jednostka
+                                </div>
+                                <div class="ui selection fluid dropdown" id="unit-dropdown">
+                                    <input type="hidden" name="unit" id="unit">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Wybierz jednostkę</div>
+                                    <div class="menu">
+                                        <div class="item" data-value="piece">
+                                            <i class="cube icon"></i>
+                                            Sztuk
+                                        </div>
+                                        <div class="item" data-value="weight">
+                                            <i class="law icon"></i>
+                                            Gramów
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                            <div class="ui labeled input calendar">
+                                <div class="ui label">
+                                    <i class="calendar checked icon"></i>
+                                    Data zbioru
+                                </div>
+                                <input type="text" name="date" placeholder="Data zbioru" id="date">
+                            </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="lab icon"></i>
+                                Przeznaczenie
+                            </div>
+                            <div class="ui selection fluid dropdown" id="usage-dropdown">
+                                <input type="hidden" name="usage" id="usage">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Wybierz przeznaczenie</div>
+                                <div class="menu">
+                                    <div class="item" data-value="seminum">
+                                        <i class="leaf icon"></i>
+                                        Seminum
+                                    </div>
+                                    <div class="item" data-value="lab">
+                                        <i class="lab icon"></i>
+                                        Laboratorium
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="sticky note icon"></i>
+                                Notatka
+                            </div>
+                            <textarea rows="2" name="note" placeholder="..." id="note"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>

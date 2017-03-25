@@ -1,0 +1,64 @@
+<template name="main">
+    <div class="main">
+        <div class="ui centered grid">
+            <div class="row">
+                <div class="column">
+                    <div class="main-text">
+                        Ogród Roślin Leczniczych
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <div class="main-text">
+                        GUMed
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{>mainNews}}
+</template>
+
+<template name="mainNews">
+    {{#if Template.subscriptionsReady}}
+        {{#if news}}
+            <div class="mainNews">
+                <div class="ui centered grid">
+                    {{#each news}}
+                        <div class="main-news row animated fadeInUp">
+                            <div class="eight wide left aligned column">
+                                <div class="ui green left aligned segment">
+                                    <div class="row">
+                                        <h2>{{title}}</h2>
+                                    </div>
+                                    <div class="row">
+                                        <h4>{{author.name}}, {{formatPrettyDateTime createdAt}}</h4>
+                                    </div>
+                                    <div class="row">
+                                        <img class="news-image" src="images/news.png" alt="logo" />
+                                    </div>
+                                    <div class="row">
+                                        {{{content}}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                    <div class="row">
+                        <div class="ui animated vertical neutral button" id="loadMoreButton">
+                            <div class="visible content">
+                                {{text.mainPage.loadMoreButton}}
+                            </div>
+                            <div class="hidden content">
+                                <i class="arrow down icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+            {{>loading}}
+        {{/if}}
+    {{/if}}
+</template>

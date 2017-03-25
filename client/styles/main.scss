@@ -1,0 +1,37 @@
+@import 'general.scss';
+
+main {
+    padding-bottom: 20px;
+}
+
+.main {
+    background: linear-gradient(to bottom right, $main-color, lighten($main-color, 5%));
+    height: 500px;
+}
+
+.mainNews {
+    padding-top: 20px;
+}
+
+.indexSeminum-text {
+    font-weight: bold;
+    font-size: 2em;
+    line-height: 2em;
+}
+
+.main-news {
+    padding-bottom: 10px;
+}
+
+.main-text {
+    color: $white;
+    font-weight: bold;
+    font-size: 5em;
+    line-height: 2em;
+}
+
+.primary-text {
+    font-size: 1.5em;
+    line-height: 1.5em;
+    text-align: justify;
+}

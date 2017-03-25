@@ -1,0 +1,17 @@
+@import "general.scss";
+
+#activityPage {
+    font-size: 16px;
+    text-align: justify;
+}
+
+.accordion {
+    .title {
+        color: darken($main-color, 10%) !important;
+        font-weight: bold;
+    }
+}
+
+.literature {
+    // margin-top: 18em;
+}

@@ -1,0 +1,42 @@
+<template name="login">
+    <i class="huge home icon" id="home" data-content="Powrót do strony głównej" data-position="right center"></i>
+    <div class="ui center aligned grid">
+        <form class="ui login form segment">
+            <h2>Logowanie</h2>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">
+                        <i class="user icon"></i>
+                        Login
+                    </div>
+                    <input type="text" name="login" placeholder="login" id="login">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">
+                        <i class="lock icon"></i>
+                        Hasło
+                    </div>
+                    <input type="password" name="password" placeholder="hasło" id="password">
+                </div>
+            </div>
+            <button class="ui primary labeled icon button" type="submit" id="submit">
+                <i class="sign in icon"></i>
+                Zaloguj
+            </button>
+            <p>
+                Nie masz konta?
+                <a href="{{path 'register'}}">
+                    Zarejestruj się
+                </a>
+            </p>
+            <p>
+                Zapomniałeś hasła?
+                <a href="{{path 'forgot'}}">
+                    Kliknij tutaj
+                </a>
+            </p>
+        </form>
+    </div>
+</template>

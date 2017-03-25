@@ -1,0 +1,190 @@
+<template name="orders">
+    <div class="ui horizontally padded divided grid">
+        <div class="two wide column">
+            <div class="ui form">
+                <div class="field">
+                    <div class="ui icon fluid input">
+                        <input type="text" placeholder="Szukaj..." id="search">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="orderDateFrom">Data zamówienia:</label>
+                    <div class="ui left icon fluid action input calendar" name="orderDateFrom" id="orderDateFromCalendar">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Od">
+                        <button class="ui icon button" id="clearOrderDateFrom"><i class="remove icon"></i></button>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon fluid action input calendar" name="orderDateTo" id="orderDateToCalendar">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Do">
+                        <button class="ui icon button" id="clearOrderDateTo"><i class="remove icon"></i></button>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="orderStatus">Status zamówienia:</label>
+                    <div class="ui selection fluid dropdown" id="orderStatus-dropdown">
+                        <input type="hidden" name="unit" id="unit">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Status</div>
+                        <div class="menu">
+                            <div class="item" data-value="processing">
+                                <i class="settings icon"></i>
+                                Przetwarzanie
+                            </div>
+                            <div class="item" data-value="preparing">
+                                <i class="gift icon"></i>
+                                Przygotowywanie
+                            </div>
+                            <div class="item" data-value="sent">
+                                <i class="send icon"></i>
+                                Wysłano
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearOrderStatus">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="verified">Ogród zweryfikowany:</label>
+                    <div class="ui selection fluid dropdown" id="verified-dropdown">
+                        <input type="hidden" name="verified" id="verified">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Zweryfikowany?</div>
+                        <div class="menu">
+                            <div class="item" data-value="true">
+                                <i class="checkmark icon"></i>
+                                Tak
+                            </div>
+                            <div class="item" data-value="false">
+                                <i class="remove icon"></i>
+                                Nie
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearVerified">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="recordsPerPage">Ilość wyników na stronę:</label>
+                    <div class="ui fluid buttons" name="recordsPerPage">
+                        <button class="ui button recordsPerPage" id="10recordsPerPage" value="10">10</button>
+                        <button class="ui button recordsPerPage" id="25recordsPerPage" value="25">25</button>
+                        <button class="ui button recordsPerPage" id="50recordsPerPage" value="50">50</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fourteen wide column">
+            {{>breadcrumb sections='2' mainSection='orders'}}
+            {{>basicControlPanel report=true}}
+            {{>pagination page='orders'}}
+            {{#if Template.subscriptionsReady}}
+                <div class="ui grid animated fadeIn">
+                    <div class="column">
+                        <table class="ui striped selectable table">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-sort="name">
+                                        Nazwa
+                                        {{{sort 'name'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="address">
+                                        Adres
+                                        {{{sort 'address'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="email">
+                                        Adres e-mail
+                                        {{{sort 'email'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="createdAt">
+                                        Data zamówienia
+                                        {{{sort 'createdAt'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="status">
+                                        Status zamówienia
+                                        {{{sort 'status'}}}
+                                    </th>
+                                    <th>
+                                        &nbsp;
+                                    </th>
+                                    <th class="sortable" data-sort="verified">
+                                        Ogród zweryfikowany
+                                        {{{sort 'verified'}}}
+                                    </th>
+                                    <th>
+                                        &nbsp;
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each orders}}
+                                    <tr class="record animated fadeInUp" id="{{_id}}">
+                                        {{#with orderingParty}}
+                                            <td>
+                                                {{name}}
+                                            </td>
+                                            {{#with address}}
+                                                <td>
+                                                    ul. {{street}} {{number}}, {{city}}, {{country}}
+                                                </td>
+                                            {{/with}}
+                                            <td>
+                                                {{#if contact.email}}
+                                                    <div>
+                                                        <i class="copy icon link copyEmail" data-content="Kopiuj" data-position="left center"></i> {{contact.email}}
+                                                    </div>
+                                                {{/if}}
+                                            </td>
+                                        {{/with}}
+                                        <td>
+                                            {{formatDate createdAt}}
+                                        </td>
+                                        <td>
+                                            {{formatStatus orderStatus}}
+                                        </td>
+                                        <td>
+                                            {{#if isPreparing orderStatus}}
+                                                <i class="send icon link sendButton" data-content="Zmień status na 'Wysłano'" data-position="right center"></i>
+                                            {{/if}}
+                                        </td>
+                                        <td>
+                                            {{#if verified}}
+                                                <i class="checkmark icon"></i>
+                                            {{/if}}
+                                        </td>
+                                        <td>
+                                            <i class="icon trash link deleteButton" data-content="Usuń" data-position="right center"></i>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {{else}}
+                {{>loading}}
+            {{/if}}
+            {{>modalDelete}}
+            {{>modalReportPrint}}
+        </div>
+    </div>
+</template>

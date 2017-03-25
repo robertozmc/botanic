@@ -1,0 +1,208 @@
+<template name="seeds">
+    <div class="ui horizontally padded divided grid">
+        <div class="two wide column">
+            <div class="ui form">
+                <div class="field">
+                    <div class="ui icon fluid input">
+                        <input type="text" placeholder="Szukaj..." id="search">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="quantityFrom">Ilość:</label>
+                    <div class="ui input quantityInput" name="quantityFrom">
+                        <input type="text" placeholder="Od" id="quantityFromInput">
+                    </div> -
+                    <div class="ui input quantityInput" name="quantityTo">
+                        <input type="text" placeholder="Do" id="quantityToInput">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearQuantity">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="unit">Jednostka:</label>
+                    <div class="ui selection fluid dropdown" id="unit-dropdown">
+                        <input type="hidden" name="unit" id="unit">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Jednostka</div>
+                        <div class="menu">
+                            <div class="item" data-value="piece">
+                                <i class="cube icon"></i>
+                                Sztuk
+                            </div>
+                            <div class="item" data-value="weight">
+                                <i class="law icon"></i>
+                                Gramów
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearUnit">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="harvestDateFrom">Data zebrania:</label>
+                    <div class="ui left icon fluid action input calendar" name="harvestDateFrom" id="harvestDateFromCalendar">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Od">
+                        <button class="ui icon button" id="clearHarvestDateFrom"><i class="remove icon"></i></button>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon fluid action input calendar" name="harvestDateTo" id="harvestDateToCalendar">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Do">
+                        <button class="ui icon button" id="clearHarvestDateTo"><i class="remove icon"></i></button>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="unit">Przeznaczenie:</label>
+                    <div class="ui selection fluid dropdown" id="usage-dropdown">
+                        <input type="hidden" name="usage" id="usage">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Przeznaczenie</div>
+                        <div class="menu">
+                            <div class="item" data-value="seminum">
+                                <i class="leaf icon"></i>
+                                Seminum
+                            </div>
+                            <div class="item" data-value="lab">
+                                <i class="lab icon"></i>
+                                Laboratorium
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui animated fade fluid button" id="clearUsage">
+                        <div class="visible content">
+                            Wyczyść
+                        </div>
+                        <div class="hidden content">
+                            <i class="remove icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="createdDateFrom">Data dodania:</label>
+                    <div class="ui left icon fluid action input calendar" name="createdDateFrom" id="createdDateFromCalendar">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Od">
+                        <button class="ui icon button" id="clearCreatedDateFrom"><i class="remove icon"></i></button>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon fluid action input calendar" name="createdDateTo" id="createdDateToCalendar">
+                        <i class="calendar icon"></i>
+                        <input type="text" placeholder="Do">
+                        <button class="ui icon button" id="clearCreatedDateTo"><i class="remove icon"></i></button>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="recordsPerPage">Ilość wyników na stronę:</label>
+                    <div class="ui fluid buttons" name="recordsPerPage">
+                        <button class="ui button recordsPerPage" id="10recordsPerPage" value="10">10</button>
+                        <button class="ui button recordsPerPage" id="25recordsPerPage" value="25">25</button>
+                        <button class="ui button recordsPerPage" id="50recordsPerPage" value="50">50</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fourteen wide column">
+            {{>breadcrumb sections='2' mainSection='seeds'}}
+            {{>basicControlPanel add=true report=true}}
+            {{>pagination page='seeds'}}
+            {{#if Template.subscriptionsReady}}
+                <div class="ui grid">
+                    <div class="column">
+                        <table class="ui striped selectable table">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-sort="plant">
+                                        Roślina
+                                        {{{sort 'plant'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="quantity">
+                                        Ilość
+                                        {{{sort 'quantity'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="unit">
+                                        Jednostka
+                                        {{{sort 'unit'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="date">
+                                        Data zebrania
+                                        {{{sort 'date'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="usage">
+                                        Przeznaczenie
+                                        {{{sort 'usage'}}}
+                                    </th>
+                                    <th class="sortable" data-sort="note">
+                                        Notatka
+                                        {{{sort 'note'}}}
+                                    </th>
+                                    <th>
+                                        &nbsp;
+                                    </th>
+                                    <th>
+                                        &nbsp;
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each seeds}}
+                                    <tr class="record animated fadeInUp" id="{{_id}}">
+                                        <td>
+                                            {{{plant.name}}}
+                                        </td>
+                                        <td>
+                                            {{quantity}}
+                                        </td>
+                                        <td>
+                                            {{formatUnit unit}}
+                                        </td>
+                                        <td>
+                                            {{formatDate date}}
+                                        </td>
+                                        <td>
+                                            {{formatUsage usage}}
+                                        </td>
+                                        <td>
+                                            {{note}}
+                                        </td>
+                                        <td>
+                                            <i class="write icon link editButton" data-content="Edytuj" data-position="left center"></i>
+                                        </td>
+                                        <td>
+                                            <i class="trash icon link deleteButton" data-content="Usuń" data-position="right center"></i>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {{else}}
+                {{>loading}}
+            {{/if}}
+            {{>modalDelete}}
+            {{>modalReportPrint}}
+        </div>
+    </div>
+</template>

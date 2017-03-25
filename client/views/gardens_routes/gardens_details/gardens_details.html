@@ -1,0 +1,175 @@
+<template name="gardensDetails">
+    {{>breadcrumb sections='3' mainSection='gardens' currentSection='details'}}
+    {{#if Template.subscriptionsReady}}
+        {{#if garden}}
+            <div class="ui grid">
+                <div class="row">
+                    <div class="column">
+                        <a href="{{gardensEditPath garden._id}}" class="ui animated fade primary button right floated">
+                            <div class="visible content">
+                                Edytuj
+                            </div>
+                            <div class="hidden content">
+                                <i class="write icon"></i>
+                            </div>
+                        </a>
+                        <a href="{{previousPage}}" class="ui animated neutral button right floated">
+                            <div class="visible content">
+                                Wstecz
+                            </div>
+                            <div class="hidden content">
+                                <i class="arrow left icon"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row animated fadeIn">
+                    <div class="column">
+                        <table class="ui celled striped table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Pole
+                                    </th>
+                                    <th>
+                                        Wartość
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#with garden}}
+                                    <tr>
+                                        <td>
+                                            ID
+                                        </td>
+                                        <td>
+                                            {{_id}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Nazwa
+                                        </td>
+                                        <td>
+                                            {{name}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Dodatkowa nazwa ogrodu
+                                        </td>
+                                        <td>
+                                            {{subname}}
+                                        </td>
+                                    </tr>
+                                    {{#with address}}
+                                        <tr>
+                                            <td>
+                                                Ulica
+                                            </td>
+                                            <td>
+                                                {{street}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Numer budynku
+                                            </td>
+                                            <td>
+                                                {{number}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Kod pocztowy
+                                            </td>
+                                            <td>
+                                                {{postalCode}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Miasto
+                                            </td>
+                                            <td>
+                                                {{city}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Kraj
+                                            </td>
+                                            <td>
+                                                {{country}}
+                                            </td>
+                                        </tr>
+                                    {{/with}}
+                                    {{#with contact}}
+                                        <tr>
+                                            <td>
+                                                Numer telefonu
+                                            </td>
+                                            <td>
+                                                {{phone}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Fax
+                                            </td>
+                                            <td>
+                                                {{fax}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Adres e-mail
+                                            </td>
+                                            <td>
+                                                {{email}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Strona WWW
+                                            </td>
+                                            <td>
+                                                {{website}}
+                                            </td>
+                                        </tr>
+                                    {{/with}}
+                                    <tr>
+                                        <td>
+                                            Przedstawiciel
+                                        </td>
+                                        <td>
+                                            {{representative}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Data utworzenia
+                                        </td>
+                                        <td>
+                                            {{formatDateTime createdAt}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Data edycji
+                                        </td>
+                                        <td>
+                                            {{formatDateTime editedAt}}
+                                        </td>
+                                    </tr>
+                                {{/with}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {{else}}
+            {{>errorMessage}}
+        {{/if}}
+    {{/if}}
+</template>

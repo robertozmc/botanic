@@ -1,0 +1,55 @@
+<template name="newsDetails">
+    {{>breadcrumb sections='3' mainSection='news' currentSection='details'}}
+    {{#if Template.subscriptionsReady}}
+        {{#if news}}
+            <div class="ui grid">
+                <div class="row">
+                    <div class="column">
+                        <a href="{{newsEditPath seed._id}}" class="ui animated fade primary button right floated">
+                            <div class="visible content">
+                                Edytuj
+                            </div>
+                            <div class="hidden content">
+                                <i class="write icon"></i>
+                            </div>
+                        </a>
+                        <a href="{{previousPage}}" class="ui animated neutral button right floated">
+                            <div class="visible content">
+                                Wstecz
+                            </div>
+                            <div class="hidden content">
+                                <i class="arrow left icon"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="ui centered grid">
+                        {{#with news}}
+                            <div class="main-news row">
+                                <div class="eight wide left aligned column">
+                                    <div class="ui green left aligned segment">
+                                        <div class="row">
+                                            <h2>{{title}}</h2>
+                                        </div>
+                                        <div class="row">
+                                            <h4>{{author.name}}, {{formatPrettyDateTime createdAt}}</h4>
+                                        </div>
+                                        <div class="row">
+                                            <img  class="news-image" src="../../images/news.png" alt="logo" />
+                                        </div>
+                                        <div class="row">
+                                            {{{content}}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/with}}
+                    </div>
+                </div>
+            </div>
+        {{else}}
+            {{>errorMessage}}
+        {{/if}}
+    {{/if}}
+</template>

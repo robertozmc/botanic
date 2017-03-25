@@ -1,0 +1,63 @@
+<template name="pagination">
+    {{#if moreThanOnePage}}
+        <div class="ui grid">
+            <div class="column">
+                <div class="ui pagination menu">
+                    <a class="{{previousButtonState}} item" id="previousPage">
+                        <i class="chevron left icon"></i>
+                    </a>
+                    <a class="page {{activePage 1}} item" id="page_1">
+                        1
+                    </a>
+                    {{#if isAll paginationState}}
+                        {{#each pages}}
+                            <a class="page {{activePage this}} item animated zoomIn" id="page_{{this}}">
+                                {{this}}
+                            </a>
+                        {{/each}}
+                    {{else}}
+                        {{#if isFront paginationState}}
+                            {{#each pages}}
+                                <a class="page {{activePage this}} item animated zoomIn" id="page_{{this}}">
+                                    {{this}}
+                                </a>
+                            {{/each}}
+                            <a class="disabled item">
+                                ...
+                            </a>
+                        {{/if}}
+                        {{#if isMiddle paginationState}}
+                            <a class="disabled item">
+                                ...
+                            </a>
+                            {{#each pages}}
+                                <a class="page {{activePage this}} item animated zoomIn" id="page_{{this}}">
+                                    {{this}}
+                                </a>
+                            {{/each}}
+                            <a class="disabled item">
+                                ...
+                            </a>
+                        {{/if}}
+                        {{#if isBack paginationState}}
+                            <a class="disabled item">
+                                ...
+                            </a>
+                            {{#each pages}}
+                                <a class="page {{activePage this}} item animated zoomIn" id="page_{{this}}">
+                                    {{this}}
+                                </a>
+                            {{/each}}
+                        {{/if}}
+                    {{/if}}
+                    <a class="page {{activePage lastPage}} item" id="page_{{lastPage}}">
+                        {{lastPage}}
+                    </a>
+                    <a class="{{nextButtonState}} item" id="nextPage">
+                        <i class="chevron right icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+</template>

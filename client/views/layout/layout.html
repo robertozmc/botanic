@@ -1,0 +1,45 @@
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Ogród Roślin Leczniczych GUMed</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+</head>
+
+<template name="layout">
+    <header>
+        <div class="{{headerClass}}">
+            {{>Template.dynamic template=header}}
+        </div>
+    </header>
+    <main>
+        <div class="{{mainClass}}">
+            {{#if isPublicRoute}}
+                {{>Template.dynamic template=content}}
+            {{else}}
+                <div class="ui grid">
+                    <div class="row">
+                        {{#if isAddEditDetailsView}}
+                            <div class="two wide column">
+                                
+                            </div>
+                            <div class="twelve wide column">
+                                {{>Template.dynamic template=content}}
+                            </div>
+                        {{else}}
+                            <div class="fourteen wide column">
+                                {{>Template.dynamic template=content}}
+                            </div>
+                        {{/if}}
+                        <div class="two wide column">
+                            {{>alertsSidebar}}
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+        </div>
+    </main>
+    <footer>
+        {{>Template.dynamic template=footer}}
+    </footer>
+</template>

@@ -1,0 +1,1 @@
+plants.join('gardens', 'gardenInformations.importGarden', 'gardenData', ['name']);

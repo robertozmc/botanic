@@ -1,0 +1,27 @@
+<template name="breadcrumb">
+    <div class="ui grid">
+        <div class="column">
+            <div class="ui breadcrumb">
+                <a href="{{homePath}}" class="section">Start</a>
+                {{#if equals sections '2'}}
+                    <i class="right chevron icon divider"></i>
+                    <div class="active section">{{mainSection.name}}</div>
+                {{/if}}
+                {{#if equals sections '3'}}
+                    <i class="right chevron icon divider"></i>
+                    <a href="{{mainSection.url}}" class="section">{{mainSection.name}}</a>
+                    <i class="right arrow icon divider"></i>
+                    <div class="active section">{{currentSection}}</div>
+                {{/if}}
+                {{#if equals sections '4'}}
+                    <i class="right chevron icon divider"></i>
+                    <a href="{{mainSection.url}}" class="section">{{mainSection.name}}</a>
+                    <i class="right chevron icon divider"></i>
+                    <a href="{{secondSection.url}}" class="section">{{secondSection.name}}</a>
+                    <i class="right arrow icon divider"></i>
+                    <div class="active section">{{currentSection}}</div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</template>

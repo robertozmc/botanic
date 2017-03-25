@@ -1,0 +1,24 @@
+@import "general.scss";
+
+$footer-color: rgb(27, 28, 29);
+
+.footer {
+    width: 100%;
+    padding-left: 100px;
+    padding-right: 100px;
+
+    background-color: $footer-color;
+    color: $white;
+
+    a {
+        color: inherit;
+    }
+}
+
+#symbol {
+    position: relative;
+    height: 20px;
+    width: auto;
+
+    bottom: 10px;
+}

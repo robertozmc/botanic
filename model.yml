@@ -1,0 +1,170 @@
+order:
+    _id:                    string
+    name:                   string
+    createdAt:              date
+    editedAt:               date
+
+family:
+    _id:                    string
+    name:                   string
+    createdAt:              date
+    editedAt:               date
+
+gardens:
+    _id:                    string
+    name:                   string
+    subname:                string
+    address:
+        street:             string
+        number:             string
+        postalCode:         string
+        city:               string
+        country:            string
+    contact:
+        phone:              string
+        fax:                string
+        email:              string
+        website:            string
+    representative:         string
+    createdAt:              date
+    editedAt:               date
+
+plants:
+    _id:                    string
+    catalogNumber:          string
+    generalInformations:
+        name:
+            genus:          string
+            species:        string
+            variety:        string
+            subspecies:     string
+            cultivar:       string
+            authorship:     string
+            hybrid:         boolean
+        namePL:             string
+        order:
+            id:             string
+            name:           string
+        family:
+            id:             string
+            name:           string
+        division:           string
+        clade:              string
+        type:               string
+        regionOfLiving:
+            continent[]:    string
+            description:    string
+        habitat:            string
+        typeOfProtection:   string
+        endangered:         boolean
+        rawMaterial[]:      string
+        abilityToSow:       int
+        abilityToPropagate: int
+    gardenInformations:
+        place[]:            string
+        quantity:           int
+        importType:         string
+        importYear:         int
+        importGarden:       string
+        researchAtPharmacy: boolean
+        herbarium:          boolean
+        confirmed:          boolean
+    characteristic:
+        pharmacopoeial:     boolean
+        medicinal:          boolean
+        poisonous:          boolean
+        edible:             boolean
+        spice:              boolean
+        appropriable:       boolean
+        ornamental:         boolean
+        bulb:               boolean
+        evergreen:          boolean
+    note:                   string
+    state[]:
+        quantity:           int
+        date:               date
+    createdAt:              date
+    editedAt:               date
+
+seeds:
+    _id:                    string
+    plant:
+        id:                 string
+        name:               string
+    quantity:               int
+    unit:                   string
+    usage:                  string
+    date:                   date
+    note:                   string
+    createdAt:              date
+    editedAt:               date
+
+indexSeminum:
+    _id:                    string
+    plant:
+        id:                 string
+        name:
+            genus:          string
+            species:        string
+            variety:        string
+            subspecies:     string
+            cultivar:       string
+            authorship:     string
+            hybrid:         boolean
+        division:           string
+        clade:              string
+        family:             string
+    years[]:
+        year:               int
+        quantity:           int
+    createdAt:              date
+    editedAt:               date
+
+orders:
+    _id:                    string
+    orderingParty:
+        name:               string
+        subname:            string
+        address:
+            street:         string
+            number:         string
+            postalCode:     string
+            city:           string
+            country:        string
+        contact:
+            phone:          string
+            fax:            string
+            email:          string
+            website:        string
+        representative:     string
+    order[]:                string
+    orderStatus:            string
+    verified:               boolean
+    createdAt:              date
+    editedAt:               date
+
+news:
+    _id:                    string
+    title:                  string
+    content:                string
+    author:
+        id:                 string
+        name:               string
+    photos[]:
+        title:              string
+        url:                string
+    createdAt:              date
+    editedAt:               date
+
+gallery:
+    _id:                    string
+    title:                  string
+    description:            string
+    photos[]:
+        title:              string
+        description:        string
+        url:                string
+        createdAt:          date
+        editedAt:           date
+    createdAt:              date
+    editedAt:               date

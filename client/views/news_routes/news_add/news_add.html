@@ -1,0 +1,474 @@
+<template name="newsAdd">
+    {{>breadcrumb sections='3' mainSection='news' currentSection='add'}}
+    <div class="ui grid">
+        <div class="row">
+            <div class="column">
+                <div id="submit" class="ui animated fade positive button right floated">
+                    <div class="visible content">
+                        Dodaj
+                    </div>
+                    <div class="hidden content">
+                        <i class="plus icon"></i>
+                    </div>
+                </div>
+                <a href="{{previousPage}}" class="ui animated negative button right floated">
+                    <div class="visible content">
+                        Anuluj
+                    </div>
+                    <div class="hidden content">
+                        <i class="arrow left icon"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <form class="ui form">
+                    <h3 class="ui horizontal divider header">
+                        <i class="book icon"></i>
+                        TYTUŁ
+                    </h3>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="book icon"></i>
+                                Tytuł
+                            </div>
+                            <input type="text" name="title" placeholder="Tytuł newsa" id="title">
+                        </div>
+                    </div>
+                    <h3 class="ui horizontal divider header">
+                        <i class="image icon"></i>
+                        GRAFIKA
+                    </h3>
+                    <form id="dropzone" action="submit" class="dropzone">
+                    </form>
+                    <h3 class="ui horizontal divider header">
+                        <i class="newspaper icon"></i>
+                        TREŚĆ
+                    </h3>
+                    {{>textEditorToolbar}}
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="newspaper icon"></i>
+                                Treść
+                            </div>
+                            <textarea name="content" rows="10" placeholder="Treść newsa" id="content"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{>newsAddModal}}
+    {{>newsAddHelpModal}}
+</template>
+
+<template name="textEditorToolbar">
+    <div class="column" id="textEditorToolbar">
+        <div class="ui icon buttons">
+          <button class="ui button" id="bold"><i class="bold icon"></i></button>
+          <button class="ui button" id="italic"><i class="italic icon"></i></button>
+          <button class="ui button" id="underline"><i class="underline icon"></i></button>
+          <button class="ui button" id="strikethrough"><i class="strikethrough icon"></i></button>
+        </div>
+        <div class="ui icon buttons">
+            <button class="ui floating dropdown button" id="header">
+                <i class="header icon"></i>
+                <div class="menu">
+                    <div class="item" id="h1">
+                        <h1 class="ui header">H1</h1>
+                    </div>
+                    <div class="item" id="h2">
+                        <h2 class="ui header">H2</h2>
+                    </div>
+                    <div class="item" id="h3">
+                        <h3 class="ui header">H3</h3>
+                    </div>
+                    <div class="item" id="h4">
+                        <h4 class="ui header">H4</h4>
+                    </div>
+                    <div class="item" id="h5">
+                        <h5 class="ui header">H5</h5>
+                    </div>
+                    <div class="item" id="h6">
+                        <h6 class="ui header">H6</h6>
+                    </div>
+                </div>
+            </button>
+            <button class="ui button" id="quote"><i class="quote right icon"></i></button>
+            <button class="ui button" id="linkify"><i class="linkify icon"></i></button>
+        </div>
+        <div class="ui icon buttons">
+          <button class="ui button" id="orderedList"><i class="ordered list icon"></i></button>
+          <button class="ui button" id="unorderedList"><i class="unordered list icon"></i></button>
+        </div>
+        <div class="ui icon buttons">
+            <button class="ui button" id="alignLeft"><i class="align left icon"></i></button>
+            <button class="ui button" id="alignCenter"><i class="align center icon"></i></button>
+            <button class="ui button" id="alignRight"><i class="align right icon"></i></button>
+            <button class="ui button" id="alignJustify"><i class="align justify icon"></i></button>
+        </div>
+        <button class="ui labeled icon button" id="overview">
+            <i class="unhide icon"></i>
+            Podgląd
+        </button>
+        <button class="ui right floated labeled icon button" id="help">
+            <i class="help icon"></i>
+            Pomoc
+        </button>
+    </div>
+</template>
+
+<template name="newsAddModal">
+    <div class="ui modal" id="newsAddModal">
+        <i class="close icon"></i>
+        <div class="header">
+            <h2 class="ui header">{{title}}</h2>
+            <h4 class="ui header">{{formatDate createdAt}}</h4>
+        </div>
+        <div class="content">
+            <div class="ui green segment" id="newsAddModalContent">
+
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="newsAddHelpModal">
+    <div class="ui large modal" id="newsAddHelpModal">
+        <i class="close icon"></i>
+        <div class="header">
+            Formatowanie tekstu z użyciem znaczników HTML
+        </div>
+        <div class="content">
+            <table class="ui celled structured striped table">
+                <thead>
+                    <tr>
+                        <th>
+                            Funkcja
+                        </th>
+                        <th class="collapsing">
+                            Symbol
+                        </th>
+                        <th>
+                            Znacznik
+                        </th>
+                        <th>
+                            Działanie
+                        </th>
+                        <th>
+                            Uwagi
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            Pogrubienie
+                        </td>
+                        <td class="center aligned">
+                            <i class="bold icon"></i>
+                        </td>
+                        <td>
+                            &lt;b&gt;&lt;/b&gt;
+                        </td>
+                        <td>
+                            <b>Tekst</b>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Kursywa
+                        </td>
+                        <td class="center aligned">
+                            <i class="italic icon"></i>
+                        </td>
+                        <td>
+                            &lt;i&gt;&lt;/i&gt;
+                        </td>
+                        <td>
+                            <i>Tekst</i>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Podkreślenie
+                        </td>
+                        <td class="center aligned">
+                            <i class="underline icon"></i>
+                        </td>
+                        <td>
+                            &lt;u&gt;&lt;/u&gt;
+                        </td>
+                        <td>
+                            <u>Tekst</u>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Przekreślenie
+                        </td>
+                        <td class="center aligned">
+                            <i class="strikethrough icon"></i>
+                        </td>
+                        <td>
+                            &lt;del&gt;&lt;/del&gt;
+                        </td>
+                        <td>
+                            <del>Tekst</del>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="6">
+                            Nagłówek
+                        </td>
+                        <td rowspan="6" class="center aligned">
+                            <i class="header icon"></i>
+                        </td>
+                        <td>
+                            &lt;h1&gt;&lt;/h1&gt;
+                        </td>
+                        <td>
+                            <h1>Tekst</h1>
+                        </td>
+                        <td rowspan="6" class="top aligned collapsing">
+                            Aby wyrównać tekst należy dołączyć odpowiedni kod do znacznika:<br><br>
+                            Wyrównanie do lewej: <b>&lt;hX style="text-align:left"&gt;&lt;/hX&gt;</b><br>
+                            Wyrównanie do środka: <b>&lt;hX style="text-align:center"&gt;&lt;/hX&gt;</b><br>
+                            Wyrównanie do prawej: <b>&lt;hX style="text-align:right"&gt;&lt;/hX&gt;</b><br>
+                            Wyjustowanie: <b>&lt;hX style="text-align:justify"&gt;&lt;/hX&gt;</b><br><br>
+                            , gdzie X &in; {1, 2, 3, 4, 5, 6}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &lt;h2&gt;&lt;/h2&gt;
+                        </td>
+                        <td>
+                            <h2>Tekst</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &lt;h3&gt;&lt;/h3&gt;
+                        </td>
+                        <td>
+                            <h3>Tekst</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &lt;h4&gt;&lt;/h4&gt;
+                        </td>
+                        <td>
+                            <h4>Tekst</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &lt;h5&gt;&lt;/h5&gt;
+                        </td>
+                        <td>
+                            <h5>Tekst</h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &lt;h6&gt;&lt;/h6&gt;
+                        </td>
+                        <td>
+                            <h6>Tekst</h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Cytat
+                        </td>
+                        <td class="center aligned">
+                            <i class="quote right icon"></i>
+                        </td>
+                        <td>
+                            &lt;blockquote&gt;&lt;/blockquote&gt;
+                        </td>
+                        <td>
+                            <blockquote>Tekst</blockquote>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Hiperłącze
+                        </td>
+                        <td class="center aligned">
+                            <i class="linkify icon"></i>
+                        </td>
+                        <td>
+                            &lt;a href=""&gt;&lt;/a&gt;
+                        </td>
+                        <td>
+                            <a href="">Tekst</a>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Lista numerowana
+                        </td>
+                        <td class="center aligned">
+                            <i class="ordered list icon"></i>
+                        </td>
+                        <td>
+                            &lt;ol&gt;<br>
+                            &emsp;&lt;li&gt;&lt;/li&gt;<br>
+                            &emsp;&lt;li&gt;&lt;/li&gt;<br>
+                            &emsp;&lt;li&gt;&lt;/li&gt;<br>
+                            &lt;/ol&gt;
+                        </td>
+                        <td>
+                            <ol>
+                                <li>Tekst</li>
+                                <li>Tekst</li>
+                                <li>Tekst</li>
+                            </ol>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Lista nienumerowana
+                        </td>
+                        <td class="center aligned">
+                            <i class="unordered list icon"></i>
+                        </td>
+                        <td>
+                            &lt;ul&gt;<br>
+                            &emsp;&lt;li&gt;&lt;/li&gt;<br>
+                            &emsp;&lt;li&gt;&lt;/li&gt;<br>
+                            &emsp;&lt;li&gt;&lt;/li&gt;<br>
+                            &lt;/ul&gt;
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Tekst</li>
+                                <li>Tekst</li>
+                                <li>Tekst</li>
+                            </ul>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Wyrównanie do lewej
+                        </td>
+                        <td class="center aligned">
+                            <i class="align left icon"></i>
+                        </td>
+                        <td>
+                            &lt;p style="text-align:left"&gt;&lt;/p&gt;
+                        </td>
+                        <td>
+                            <p style="text-align:left">Tekst</p>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Wyśrodkowanie
+                        </td>
+                        <td class="center aligned">
+                            <i class="align center icon"></i>
+                        </td>
+                        <td>
+                            &lt;p style="text-align:center"&gt;&lt;/p&gt;
+                        </td>
+                        <td>
+                            <p style="text-align:center">Tekst</p>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Wyrównanie do prawej
+                        </td>
+                        <td class="center aligned">
+                            <i class="align right icon"></i>
+                        </td>
+                        <td>
+                            &lt;p style="text-align:right"&gt;&lt;/p&gt;
+                        </td>
+                        <td>
+                            <p style="text-align:right">Tekst</p>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Wyjustowanie
+                        </td>
+                        <td class="center aligned">
+                            <i class="align justify icon"></i>
+                        </td>
+                        <td>
+                            &lt;p style="text-align:justify"&gt;&lt;/p&gt;
+                        </td>
+                        <td>
+                            <p style="text-align:justify">
+                                Tekst, tekst, tekst, tekst, tekst,
+                                tekst, tekst, tekst, tekst, tekst,
+                                tekst, tekst, tekst, tekst.
+                            </p>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Kolor
+                        </td>
+                        <td class="center aligned">
+                            <i class="theme icon"></i>
+                        </td>
+                        <td>
+                            &lt;p style="color:red"&gt;&lt;/p&gt;
+                        </td>
+                        <td>
+                            <p style="color:red">Tekst</p>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>

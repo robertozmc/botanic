@@ -1,0 +1,68 @@
+<template name="newsEdit">
+    {{>breadcrumb sections='3' mainSection='news' currentSection='edit'}}
+    <div class="ui grid">
+        <div class="row">
+            <div class="column">
+                <div id="submit" class="ui animated fade positive button right floated">
+                    <div class="visible content">
+                        Edytuj
+                    </div>
+                    <div class="hidden content">
+                        <i class="write icon"></i>
+                    </div>
+                </div>
+                <a href="{{previousPage}}" class="ui animated negative button right floated">
+                    <div class="visible content">
+                        Anuluj
+                    </div>
+                    <div class="hidden content">
+                        <i class="arrow left icon"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            {{#if Template.subscriptionsReady}}
+                <form class="ui form">
+                    <h3 class="ui horizontal divider header">
+                        <i class="book icon"></i>
+                        TYTUŁ
+                    </h3>
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="book icon"></i>
+                                Tytuł
+                            </div>
+                            <input type="text" name="title" placeholder="Tytuł newsa" id="title">
+                        </div>
+                    </div>
+                    <h3 class="ui horizontal divider header">
+                        <i class="image icon"></i>
+                        GRAFIKA
+                    </h3>
+                    <form id="dropzone" action="submit" class="dropzone">
+                    </form>
+                    <h3 class="ui horizontal divider header">
+                        <i class="newspaper icon"></i>
+                        TREŚĆ
+                    </h3>
+                    {{>textEditorToolbar}}
+                    <div class="field">
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                <i class="newspaper icon"></i>
+                                Treść
+                            </div>
+                            <textarea name="content" rows="10" placeholder="Treść newsa" id="content"></textarea>
+                        </div>
+                    </div>
+                </form>
+            {{/if}}
+        </div>
+    </div>
+    {{>newsAddModal}}
+    {{>newsAddHelpModal}}
+</template>
