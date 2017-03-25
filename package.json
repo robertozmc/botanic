@@ -2,7 +2,6 @@
   "name": "botanic",
   "private": true,
   "scripts": {
-    "mongo": "set MONGO_URL=mongodb://localhost:27017/meteor && mongod --dbpath D:/MongoDB/botanic --logpath D:/MongoDB/botanic/logs/botanic.log",
     "start": "meteor --settings settings-development.json",
     "production": "meteor --settings settings-production.json"
   },
