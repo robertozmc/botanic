@@ -94,13 +94,13 @@ On Linux:
 
 ## After cloning this repository
 
-In project folder
+In the project directory type in cmd/terminal:
 
 ```
 meteor npm install
 ```
 
-To run application type:
+To run application type in cmd/terminal:
 
 ```
 npm start
