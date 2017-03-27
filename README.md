@@ -16,6 +16,7 @@
 - REST API
 - [Blaze](http://blazejs.org/) template engine is used
 - Semantic UI as CSS library
+- ES6
 - Main page is available in two languages: Polish and English
 - All data is updating in real time (Meteor Reactivity)
 - Users can order seeds from Index seminum list and check order status
